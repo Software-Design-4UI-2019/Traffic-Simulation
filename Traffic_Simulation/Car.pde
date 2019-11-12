@@ -1,15 +1,15 @@
 class Car {
   int speed;
   float aggression;
-  int lane;
+  Lane lane;
   PVector position;
   float completion;
   float speedGoal;
   
-  Car(int s, float a, int l, PVector pos) {
+  Car(int s, float a, Lane l, PVector pos) {
     this.speed = s;
     this.aggression = a;
-    this.lane = 1;
+    this.lane = l;
     this.position = pos;
   }
 }
