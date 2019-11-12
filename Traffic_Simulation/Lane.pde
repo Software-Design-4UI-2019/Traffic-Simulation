@@ -19,3 +19,7 @@ int countCars(){
   int numcars = lanecars.size();
   return numcars;}
   
+int countCars(){
+  int numcars = lanecars.size();
+  return numcars;}}
+  
