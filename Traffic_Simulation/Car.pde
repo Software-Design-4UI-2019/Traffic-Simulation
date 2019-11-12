@@ -29,4 +29,12 @@ void stoppingDistCheck(){
     this.speedGoal = speedLimit * this.aggression;
   
   }
+  
+  void drawcar(){
+    rect(position.x,position.y,position.x+carl,position.y+carw);
+  }
+  
+  void updatespeed(){
+  }
 }
+
