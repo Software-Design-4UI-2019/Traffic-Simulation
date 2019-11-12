@@ -1,8 +1,15 @@
-void setup() {
+ArrayList<Car> allCars = new ArrayList<Car>();
+Lane[] lanes = new Lane[3];
+int speedlim = 80;
+float coeffF = 0.05;
+int avgreacspeed = 3;
+int baseaggr = 3;
+
+void setup(){
+ size(1000,800);
  
 }
 
+void draw(){
 
-void draw() {
-  
 }
