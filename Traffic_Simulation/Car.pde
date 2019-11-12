@@ -19,5 +19,13 @@ class Car {
       }else{
         return false
     }
-    }
+   void drawcar(){
+    rect(position.x,position.y,position.x+carl,position.y+carw);
+  }
+  
+  void updatespeed(){
+    
+  }
+}
+
     
