@@ -11,6 +11,9 @@ class Lane{
   this.laneid = i;
   this.lanecars = new ArrayList <Car>();}
 
+void addCar(Car c){
+  lanecars.add(c);}
+
 void drawLane(){
   line(startpoint.x,startpoint.y,endpoint.x,endpoint.y);
   line(startpoint.x,startpoint.y+lanewidth,endpoint.x,endpoint.y+lanewidth);}
@@ -19,7 +22,6 @@ int countCars(){
   int numcars = lanecars.size();
   return numcars;}
   
-int countCars(){
-  int numcars = lanecars.size();
-  return numcars;}}
-  
+
+
+}
