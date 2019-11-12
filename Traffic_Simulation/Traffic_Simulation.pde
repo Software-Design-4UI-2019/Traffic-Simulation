@@ -4,6 +4,7 @@ int speedlim = 80;
 float coeffF = 0.05;
 int avgreacspeed = 3;
 int baseaggr = 3;
+int maxAcc = 45;
 
 void setup(){
  size(1000,800);
