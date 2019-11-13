@@ -11,8 +11,8 @@ int carw = 20;
 void setup(){
  size(1000,800);
  Lane Lone = new Lane(new PVector(0,300),new PVector(1000,300),1);
- Lane Ltwo = new Lane(new PVector(0,450),new PVector(1000,450),2);
- Lane Lthree = new Lane(new PVector(0,600),new PVector(1000,600),3);
+ Lane Ltwo = new Lane(new PVector(0,350),new PVector(1000,350),2);
+ Lane Lthree = new Lane(new PVector(0,400),new PVector(1000,400),3);
  Car one = new Car(60, 4, Lone, new PVector(400,400));
  println(one.position);
  one.drawCar();
