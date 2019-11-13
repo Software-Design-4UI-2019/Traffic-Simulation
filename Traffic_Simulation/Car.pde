@@ -28,9 +28,18 @@ class Car {
     rect(position.x,position.y,carl,carw);
   }
   
-  void chooseColour(){
-     
+  color chooseColour(){
+    color carColour = color(0, 0, 0);
+    if (this.speed >= 0 || this.speed < 20) {
+     carColour = color(0, 0, 0);
+    }else if (this.speed >= 20 || this.speed <= 40) {
+         carColour = color(255, 0, 0);
+    }
+  
+    return carColour;
   }
+    
+    
   
   void updateSpeed(){
     if (this.isCrashed){
