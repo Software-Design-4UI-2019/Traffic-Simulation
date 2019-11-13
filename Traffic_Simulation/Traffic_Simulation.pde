@@ -14,7 +14,6 @@ void setup(){
  Lane Ltwo = new Lane(new PVector(0,350),new PVector(1000,350),2);
  Lane Lthree = new Lane(new PVector(0,400),new PVector(1000,400),3);
  Car one = new Car(60, 4, Lone, new PVector(400,415));
-
  Lone.drawLane();
  Ltwo.drawLane();
  Lthree.drawLane();
