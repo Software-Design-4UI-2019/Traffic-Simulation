@@ -3,7 +3,7 @@ class Car {
   float aggression;
   int lane;
   PVector position;
-  
+  boolean isCrashed;
   
   Car(int s, float a, int l, PVector pos) {
     this.speed = s;
@@ -13,13 +13,13 @@ class Car {
   }
 
   
-  //boolean isCrashed() {
-  //  for (Car c: this.lane.lanecars) {
-  //    if (c.position == this.position){
-  //      return true;
-  //    }else{
-  //      return false;
-  //  }
+  void crashCheck() {
+    for (Car c: allCars) {
+      if (PVector.dist(c.position , this.position)< 20){
+        this.isCrashed = true;
+      }
+    }
+  }
     
   void drawCar(){
     rect(position.x,position.y,carl,carw);
