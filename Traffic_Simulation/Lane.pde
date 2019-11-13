@@ -1,14 +1,14 @@
 class Lane{
   PVector startpoint;
   PVector endpoint;
-  int laneid;
+  int laneID;
   ArrayList <Car> lanecars;
-  int lanewidth = 50;
+  int laneWidth = 50;
   
  Lane(PVector s, PVector e, int i){
   this.startpoint =  s;
   this.endpoint = e;
-  this.laneid = i;
+  this.laneID = i;
   this.lanecars = new ArrayList <Car>();}
 
 void addCar(Car c){
@@ -16,7 +16,7 @@ void addCar(Car c){
 
 void drawLane(){
   line(startpoint.x,startpoint.y,endpoint.x,endpoint.y);
-  line(startpoint.x,startpoint.y+lanewidth,endpoint.x,endpoint.y+lanewidth);}
+  line(startpoint.x,startpoint.y+laneWidth,endpoint.x,endpoint.y+laneWidth);}
   
 int countCars(){
   int numcars = lanecars.size();
