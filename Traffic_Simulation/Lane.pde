@@ -23,7 +23,7 @@ int countCars(){
   return numcars;}
   
 void addtoLaneArray(){
-
+  lanes.add(this);
 }
 
 }
