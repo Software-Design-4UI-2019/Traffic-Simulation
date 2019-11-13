@@ -12,6 +12,7 @@ class Car {
     this.lane = l;
     this.position = pos;
     allCars.add(this);
+    this.lane.lanecars.add(this);
   }
 
   
