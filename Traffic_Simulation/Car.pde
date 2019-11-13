@@ -11,15 +11,15 @@ class Car {
     this.lane = 1;
     this.position = pos;
   }
+
   
   //boolean isCrashed() {
   //  for (Car c: this.lane.lanecars) {
-  //    if (c.position =  this.position){
+  //    if (c.position == this.position){
   //      return true;
-  //    }
-  //    else{
-  //      return false;}
-  //  }}
+  //    }else{
+  //      return false;
+  //  }
     
   void drawcar(){
     rect(position.x,position.y,carl,carw);
