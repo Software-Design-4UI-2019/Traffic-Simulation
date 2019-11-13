@@ -1,7 +1,8 @@
 class Car {
-  int speed;
+  float speed;
+  float goalSpeed;
   float aggression;
-  int lane;
+  Lane lane;
   PVector position;
   boolean isCrashed;
   
@@ -30,6 +31,10 @@ class Car {
   }
   
   void updateSpeed(){
+    if (this.isCrashed){
+      this.goalSpeed = 0;
+    }
+    
     
   }
   
