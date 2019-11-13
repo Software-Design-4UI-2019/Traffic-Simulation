@@ -12,7 +12,7 @@ void setup(){
  size(1000,800);
  Car one = new Car(60, 4, 1, new PVector(400,400));
  println(one.position);
- one.drawcar();
+ one.drawCar();
  
  
 }
