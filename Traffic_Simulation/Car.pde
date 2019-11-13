@@ -12,16 +12,17 @@ class Car {
     this.position = pos;
   }
   
-  boolean isCrashed() {
-    for (Car c: this.lane.lanecars) {
-      if (c.position =  this.position){
-        return true
-      }else{
-        return false
-    }
+  //boolean isCrashed() {
+  //  for (Car c: this.lane.lanecars) {
+  //    if (c.position =  this.position){
+  //      return true;
+  //    }
+  //    else{
+  //      return false;}
+  //  }}
     
   void drawcar(){
-    rect(position.x,position.y,position.x+carl,position.y+carw);
+    rect(position.x,position.y,carl,carw);
   }
   
   void choosecolour(){
@@ -36,5 +37,3 @@ class Car {
   
   }
 }
-
-    
