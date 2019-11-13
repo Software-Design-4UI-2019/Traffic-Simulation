@@ -8,7 +8,8 @@ int maxAcc = 45;
 
 void setup(){
  size(1000,800);
- Car one = new Car(
+ Car one = new Car(60, 4, 1, (400,400));
+ 
  
 }
 
