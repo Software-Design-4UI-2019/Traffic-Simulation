@@ -11,6 +11,7 @@ class Car {
     this.aggression = a;
     this.lane = l;
     this.position = pos;
+    allCars.add(this);
   }
 
   
