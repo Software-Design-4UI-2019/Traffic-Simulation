@@ -21,19 +21,19 @@ class Car {
   //      return false;
   //  }
     
-  void drawcar(){
+  void drawCar(){
     rect(position.x,position.y,carl,carw);
   }
   
-  void choosecolour(){
-  
+  void chooseColour(){
+     
   }
   
-  void updatespeed(){
+  void updateSpeed(){
     
   }
   
-  void changelanes(){
+  void changeLanes(){
   
   }
 }
