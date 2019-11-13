@@ -26,6 +26,10 @@ class Car {
   void updatespeed(){
     
   }
+  
+  void changelanes(){
+  
+  }
 }
 
     
