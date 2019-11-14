@@ -21,6 +21,9 @@ void setup(){
  Lone.addtoLaneArray();
  Ltwo.addtoLaneArray();
  Lthree.addtoLaneArray();
+ fill(one.chooseColour());
+ one.speed = 30;
+
  
  
 }
