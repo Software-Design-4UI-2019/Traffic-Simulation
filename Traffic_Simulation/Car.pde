@@ -1,12 +1,12 @@
 class Car {
-  float speed;
+  PVector speed;
   float goalSpeed;
   float aggression;
   Lane lane;
   PVector position;
   boolean isCrashed;
   
-  Car(int s, float a, Lane l, PVector pos) {
+  Car(PVector s, float a, Lane l, PVector pos) {
     this.speed = s;
     this.aggression = a;
     this.lane = l;
@@ -52,4 +52,7 @@ class Car {
   void changeLanes(){
   
   }
+  
+  //void update(){
+  //  this.position.add(speed);}
 }
