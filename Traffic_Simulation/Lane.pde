@@ -13,10 +13,12 @@ class Lane{
     lanes.add(this);
   }
   
+  //draws lanes
   void drawLane(){
     line(startpoint.x,startpoint.y,endpoint.x,endpoint.y);
     line(startpoint.x,startpoint.y+laneWidth,endpoint.x,endpoint.y+laneWidth);}
-    
+  
+  //counts cars in lane
   int countCars(){
     int numcars = lanecars.size();
     return numcars;}
@@ -25,6 +27,7 @@ class Lane{
     lanes.add(this);
   }
   
+  //calculates how far along the lane a car is
   float getCompletionPercent(Car car){
     float d1 = PVector.dist(car.position, this.startpoint);
     float d2 = PVector.dist(car.position, this.endpoint);
