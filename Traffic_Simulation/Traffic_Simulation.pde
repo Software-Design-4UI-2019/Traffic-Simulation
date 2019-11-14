@@ -10,19 +10,19 @@ int carw = 20;
 
 void setup(){
  size(1000,800);
- Lane Lone = new Lane(new PVector(0,300),new PVector(1000,300),1);
- Lane Ltwo = new Lane(new PVector(0,350),new PVector(1000,350),2);
- Lane Lthree = new Lane(new PVector(0,400),new PVector(1000,400),3);
- Car one = new Car(60, 4, Lone, new PVector(400,415));
+ Lane L1 = new Lane(new PVector(0,300),new PVector(1000,300),1);
+ Lane L2 = new Lane(new PVector(0,350),new PVector(1000,350),2);
+ Lane L3 = new Lane(new PVector(0,400),new PVector(1000,400),3);
+ Car C1 = new Car(60, 4, L1, new PVector(400,415));
 
- Lone.drawLane();
- Ltwo.drawLane();
- Lthree.drawLane();
- Lone.addtoLaneArray();
- Ltwo.addtoLaneArray();
- Lthree.addtoLaneArray();
- fill(one.chooseColour());
- one.speed = 30;
+ L1.drawLane();
+ L2.drawLane();
+ L3.drawLane();
+ L1.addtoLaneArray();
+ L2.addtoLaneArray();
+ L3.addtoLaneArray();    
+ fill(C1.chooseColour());
+ C1.speed = 30;
 
  
  
