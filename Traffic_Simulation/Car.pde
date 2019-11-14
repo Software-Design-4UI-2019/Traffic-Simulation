@@ -1,5 +1,5 @@
 class Car {
-  PVector speed;
+  PVector vel;
   float goalSpeed;
   float aggression;
   Lane lane;
@@ -7,7 +7,7 @@ class Car {
   boolean isCrashed;
   
   Car(PVector s, float a, Lane l, PVector pos) {
-    this.speed = s;
+    this.vel = s;
     this.aggression = a;
     this.lane = l;
     this.position = pos;
@@ -15,6 +15,7 @@ class Car {
     this.lane.lanecars.add(this);
   }
 
+  
   
   void crashCheck() {
     for (Car c: allCars) {
@@ -29,19 +30,20 @@ class Car {
   }
   
   color chooseColour(){
+    float speed = mag(this.vel.x,this.vel.y);
     color carColour = color(0, 0, 0);
-    if (this.speed >= 0 || this.speed < 20) {
+    if (speed >= 0 || speed < 20) {
      carColour = color(0, 0, 0);
-    }else if (this.speed >= 20 || this.speed <= 40) {
+    }else if (speed >= 20 || speed <= 40) {
          carColour = color(255, 0, 0);
     }
-  
     return carColour;
   }
     
     
   
   void updateSpeed(){
+    float speed = mag(this.vel.x,this.vel.y);
     if (this.isCrashed){
       this.goalSpeed = 0;
     }
@@ -53,6 +55,6 @@ class Car {
   
   }
   
-  //void update(){
-  //  this.position.add(speed);}
+  void update(){
+    this.position.add(vel);}
 }
