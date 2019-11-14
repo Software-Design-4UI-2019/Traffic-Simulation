@@ -23,6 +23,12 @@ class Lane{
   
   void addtoLaneArray(){
     lanes.add(this);
-}
+  }
+  
+  float getCompletionPercent(Car car){
+    float d1 = PVector.dist(car.position, this.startpoint);
+    float d2 = PVector.dist(car.position, this.endpoint);
+    return (d1/(d1+d2));
+  }
 
 }
