@@ -10,11 +10,14 @@ int carw = 20;
 
 void setup(){
  size(1000,800);
+ background(34,139,34);
+ fill(105,105,105);
+ rect(0,300,1000,150);
  //creates lanes and car
  Lane L1 = new Lane(new PVector(0,300),new PVector(1000,300),1);
  Lane L2 = new Lane(new PVector(0,350),new PVector(1000,350),2);
  Lane L3 = new Lane(new PVector(0,400),new PVector(1000,400),3);
- Car C1 = new Car(new PVector(60,0), 4, L1, new PVector(400,415));
+ Car C1 = new Car(new PVector(60,0), 4, L1, new PVector(350,385));
 
 //draws and adds lanes to array of lanes
  L1.drawLane();
@@ -25,9 +28,7 @@ void setup(){
  L3.addtoLaneArray();    
  C1.vel = new PVector(60,100);
  fill(C1.chooseColour());
- C1.vel = new PVector(30,0);
-
- 
+ C1.vel = new PVector(30,0); 
  
 }
 
@@ -39,11 +40,3 @@ void draw(){
 void spawncar(){
   
 }
-
-//void checksurrounding(){
-//  for (int i = 0; i < lanes.length; i++){
-//    if (lanes[i] ){
-      
-  //  }
-  //}
-//}

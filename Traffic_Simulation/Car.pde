@@ -27,7 +27,7 @@ class Car {
   }
     
   void drawCar(){
-    rect(position.x,position.y,carl,carw);
+    rect(position.x-carl,position.y-carw,carl,carw);
   }
   
   //chooses colour of car based on speed
@@ -74,13 +74,30 @@ class Car {
   
   void changeLanes(String d){
     Lane currLane = this.lane;
-    
     }
       
+  void checkSurrounding(){
+    PVector A = new PVector(this.position.x-40,this.position.y+40);
+    PVector B = new PVector(this.position.x-40,this.position.y-40);
+    PVector C = new PVector(this.position.x+40,this.position.y+40);
+    PVector D = new PVector(this.position.x-40,this.position.y-40);
+    //check what lane we're in
+    //leftmost lane
+    if (this.lane == lanes.get(0)){
+      if (dist(A.x,A.y,this.position.x,this.position.y) > 0){
+      }
+      
+    }
+    //middle lane
+    else if (this.lane == lanes.get(1)){
+    }
+    //rightmost lane
+    else{
+    }
   }
+    
   
-  void update(){
+  void updateCompletion(){
     this.position.add(vel);
     this.completion = this.lane.getCompletionPercent(this);
-  }
-}
+  }}
