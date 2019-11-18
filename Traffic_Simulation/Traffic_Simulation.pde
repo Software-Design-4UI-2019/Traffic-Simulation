@@ -10,7 +10,7 @@ int carw = 20;
 Lane L1 = new Lane(new PVector(0,300),new PVector(1000,300),1);
 Lane L2 = new Lane(new PVector(0,350),new PVector(1000,350),2);
 Lane L3 = new Lane(new PVector(0,400),new PVector(1000,400),3);
-Car C1 = new Car(new PVector(60,0), 4, L1, new PVector(400,415));
+Car C1 = new Car(new PVector(60,0), 4, L1, new PVector(350,385));
 
 void setup(){
  size(1000,800);
