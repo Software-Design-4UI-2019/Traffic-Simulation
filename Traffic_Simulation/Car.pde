@@ -72,8 +72,11 @@ class Car {
     
   }
   
-  void changeLanes(){
-  
+  void changeLanes(String d){
+    Lane currLane = this.lane;
+    
+    }
+      
   }
   
   void update(){
