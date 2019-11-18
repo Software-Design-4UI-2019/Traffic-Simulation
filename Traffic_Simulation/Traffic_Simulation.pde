@@ -15,7 +15,7 @@ Car C1 = new Car(new PVector(60,0), 4, L1, new PVector(-50,385));
 void setup(){
  size(1000,800);
  background(34,139,34);
- fill(105,105,105);
+ fill(105);
  rect(0,300,1000,150);
  //creates lanes and car
  
@@ -34,6 +34,7 @@ void setup(){
 }
 
 void draw(){
+  background(34,139,34);
  //draws car
  allCars.get(0).drawCar();
  C1.updateSpeed();
