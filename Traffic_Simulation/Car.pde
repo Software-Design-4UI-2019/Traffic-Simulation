@@ -6,7 +6,6 @@ class Car {
   PVector position;
   boolean isCrashed;
   float completion;
-  float speed;
   
   Car(PVector v, float a, Lane l, PVector pos) {
     this.vel = v;

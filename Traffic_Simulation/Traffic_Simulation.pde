@@ -22,7 +22,6 @@ void setup(){
  L1.addtoLaneArray();
  L2.addtoLaneArray();
  L3.addtoLaneArray();    
- C1.vel = new PVector(60,100);
  fill(C1.chooseColour());
  C1.vel = new PVector(30,0);
  allCars.add(C1);
