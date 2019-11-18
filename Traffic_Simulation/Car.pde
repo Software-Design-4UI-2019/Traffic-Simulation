@@ -15,6 +15,7 @@ class Car {
     this.position = pos;
     allCars.add(this);
     this.lane.lanecars.add(this);
+    float speed = mag(this.vel.x,this.vel.y)*10;
   }
 
   //checks for crashes
@@ -27,7 +28,9 @@ class Car {
   }
     
   void drawCar(){
+    fill(chooseColour());
     rect(position.x-carl,position.y-carw,carl,carw);
+    println(speed);
   }
   
   //chooses colour of car based on speed
@@ -53,7 +56,7 @@ class Car {
     
   //updates speed of cars
   void updateSpeed(){
-    float speed = mag(this.vel.x,this.vel.y);
+
     if (this.isCrashed){
       this.goalSpeed = 0;
     }
