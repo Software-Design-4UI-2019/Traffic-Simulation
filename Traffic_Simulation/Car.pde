@@ -77,7 +77,6 @@ class Car {
     
     }
       
-  }
   
   void update(){
     this.position.add(vel);
