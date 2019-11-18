@@ -8,8 +8,8 @@ class Car {
   float completion;
   float speed;
   
-  Car(PVector s, float a, Lane l, PVector pos) {
-    this.vel = s;
+  Car(PVector v, float a, Lane l, PVector pos) {
+    this.vel = v;
     this.aggression = a;
     this.lane = l;
     this.position = pos;
@@ -69,8 +69,11 @@ class Car {
     if (nextCar == null){
       this.goalSpeed = speedlim * this.aggression;
     }
+    this.position.x += this.vel.x;
+    this.position.y += this.vel.y;
     
   }
+  
   
   void changeLanes(String d){
     Lane currLane = this.lane;
