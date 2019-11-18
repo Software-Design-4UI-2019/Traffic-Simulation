@@ -26,8 +26,12 @@ class Car {
     }
   }
     
-  void drawCar(){
-    rect(position.x,position.y,carl,carw);
+  void drawCar(float x, float y, int l, int w){
+    x = position.x;
+    y = position.y;
+    l = carl;
+    w = carw;
+    rect(x, y, l, w);
   }
   
   //chooses colour of car based on speed
