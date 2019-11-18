@@ -10,7 +10,7 @@ int carw = 20;
 Lane L1 = new Lane(new PVector(0,300),new PVector(1000,300),1);
 Lane L2 = new Lane(new PVector(0,350),new PVector(1000,350),2);
 Lane L3 = new Lane(new PVector(0,400),new PVector(1000,400),3);
-Car C1 = new Car(new PVector(60,0), 4, L1, new PVector(-50,385));
+Car C1 = new Car(new PVector(60,10), 4, L1, new PVector(-50,385));
 
 void setup(){
  size(1000,800);
@@ -25,6 +25,7 @@ void setup(){
  C1.vel = new PVector(60,100);
  fill(C1.chooseColour());
  C1.vel = new PVector(30,0);
+ allCars.add(C1);
  
 }
 
@@ -42,5 +43,18 @@ void draw(){
 }
 
 void spawncar(){
+  int velx = int(random(1,100));
+  int vely = int(random(1,2));
+  int aggr = int(random(0,5));
+  Lane carlane = lanes.get(int(random(0,2)));
+  float posx = -50;
+  float posy = carlane.startpoint.y + 25;
+  while (allCars.size() < 25){
+    int x = 2;
+    //Car ("C"+x) = new Car(new PVector(velx,vely), aggr, carlane, new PVector(posx,posy));
+    
+  }
+  
+  
   
 }

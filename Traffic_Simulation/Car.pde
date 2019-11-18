@@ -15,7 +15,7 @@ class Car {
     this.position = pos;
     allCars.add(this);
     this.lane.lanecars.add(this);
-    float speed = mag(this.vel.x,this.vel.y)*10;
+    float speed = mag(this.vel.x,this.vel.y);
   }
 
   //checks for crashes
