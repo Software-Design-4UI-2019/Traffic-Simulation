@@ -1,18 +1,23 @@
 class Car {
-  PVector vel;
-  float goalSpeed;
-  float aggression;
-  Lane lane;
   PVector position;
-  boolean isCrashed;
-  float completion;
+  PVector vel;
   float speed;
+  float goalSpeed;
+  float completion; //completion percentage
+  
+  Lane lane;
+  boolean isCrashed;
+ 
+  float aggression;
+  float reacTime;//reaction time
   
   Car(PVector v, float a, Lane l, PVector pos) {
     this.vel = v;
     this.aggression = a;
     this.lane = l;
     this.position = pos;
+    this.reacTime = avgReacTime + randomGaussian() * 0.1;
+    
     allCars.add(this);
     this.lane.lanecars.add(this);
     speed = mag(this.vel.x,this.vel.y);
@@ -72,6 +77,12 @@ class Car {
     if (nextCar == null){
       this.goalSpeed = speedlim * this.aggression;
     }
+    else{
+      float currDist = PVector.dist(this.position,nextCar.position)/scaleM;
+      float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
+      //this.vel.setMag
+    }
+    
     this.position.x += this.vel.x;
     this.position.y += this.vel.y;
     
