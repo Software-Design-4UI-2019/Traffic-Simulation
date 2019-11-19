@@ -6,6 +6,7 @@ class Car {
   PVector position;
   boolean isCrashed;
   float completion;
+  float speed;
   
   Car(PVector v, float a, Lane l, PVector pos) {
     this.vel = v;
@@ -14,8 +15,9 @@ class Car {
     this.position = pos;
     allCars.add(this);
     this.lane.lanecars.add(this);
-    float speed = mag(this.vel.x,this.vel.y);
+    speed = mag(this.vel.x,this.vel.y);
   }
+  
 
   //checks for crashes
   void crashCheck() {
