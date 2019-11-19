@@ -22,6 +22,10 @@ public void pauseButtonClicked(GButton source, GEvent event) { //_CODE_:pauseBut
   paused = !paused;
 } //_CODE_:pauseButton:758401:
 
+public void aggressionSliderChanged(GSlider source, GEvent event) { //_CODE_:aggressionSlider:318674:
+
+} //_CODE_:aggressionSlider:318674:
+
 
 
 // Create all the GUI controls. 
@@ -30,8 +34,10 @@ public void createGUI(){
   G4P.messagesEnabled(false);
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
-  surface.setTitle("DriveBy");
+  surface.setTitle("Sketch Window");
   speedLimitSlider = new GSlider(this, 190, 0, 100, 40, 10.0);
+  speedLimitSlider.setShowValue(true);
+  speedLimitSlider.setShowLimits(true);
   speedLimitSlider.setLimits(80.0, 60.0, 120.0);
   speedLimitSlider.setNumberFormat(G4P.DECIMAL, 2);
   speedLimitSlider.setOpaque(false);
@@ -46,6 +52,19 @@ public void createGUI(){
   pauseButton.setTextBold();
   pauseButton.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   pauseButton.addEventHandler(this, "pauseButtonClicked");
+  label2 = new GLabel(this, 300, 10, 90, 20);
+  label2.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label2.setText("Aggression");
+  label2.setTextBold();
+  label2.setLocalColorScheme(GCScheme.RED_SCHEME);
+  label2.setOpaque(false);
+  aggressionSlider = new GSlider(this, 400, 0, 100, 40, 10.0);
+  aggressionSlider.setShowLimits(true);
+  aggressionSlider.setLimits(3.0, 0.0, 5.0);
+  aggressionSlider.setNumberFormat(G4P.DECIMAL, 2);
+  aggressionSlider.setLocalColorScheme(GCScheme.RED_SCHEME);
+  aggressionSlider.setOpaque(false);
+  aggressionSlider.addEventHandler(this, "aggressionSliderChanged");
 }
 
 // Variable declarations 
@@ -53,3 +72,5 @@ public void createGUI(){
 GSlider speedLimitSlider; 
 GLabel label1; 
 GButton pauseButton; 
+GLabel label2; 
+GSlider aggressionSlider; 
