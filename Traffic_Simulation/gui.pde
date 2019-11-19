@@ -34,6 +34,13 @@ public void clearCarsButtonClicked(GButton source, GEvent event) { //_CODE_:clea
   clearCars();
 } //_CODE_:clearCarsButton:777780:
 
+public void resetbuttonclicked(GButton source, GEvent event) { //_CODE_:resetbutton:417459:
+  clearCars();
+  Car C1 = new Car(new PVector(9, 0), 4, L1, new PVector(-50, 385));
+  while (allCars.size()<18){
+  spawnCar();}
+} //_CODE_:resetbutton:417459:
+
 
 
 // Create all the GUI controls. 
@@ -92,6 +99,10 @@ public void createGUI(){
   clearCarsButton.setTextBold();
   clearCarsButton.setLocalColorScheme(GCScheme.RED_SCHEME);
   clearCarsButton.addEventHandler(this, "clearCarsButtonClicked");
+  resetbutton = new GButton(this, 11, 91, 80, 30);
+  resetbutton.setText("Reset");
+  resetbutton.setTextBold();
+  resetbutton.addEventHandler(this, "resetbuttonclicked");
 }
 
 // Variable declarations 
@@ -104,3 +115,4 @@ GSlider aggressionSlider;
 GLabel label3; 
 GSlider spawnRateSlider; 
 GButton clearCarsButton; 
+GButton resetbutton; 
