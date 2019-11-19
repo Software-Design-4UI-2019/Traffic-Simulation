@@ -22,9 +22,6 @@ void setup() {
   createGUI();
   while (allCars.size()<18){
   spawnCar();}
-  //creates lanes and car
-  spawnCar();
-
   //draws and adds lanes to array of lanes
 
   L1.addtoLaneArray();

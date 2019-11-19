@@ -101,6 +101,7 @@ public void createGUI(){
   clearCarsButton.addEventHandler(this, "clearCarsButtonClicked");
   resetbutton = new GButton(this, 11, 91, 80, 30);
   resetbutton.setText("Reset");
+  resetbutton.setTextBold();
   resetbutton.addEventHandler(this, "resetbuttonclicked");
 }
 
