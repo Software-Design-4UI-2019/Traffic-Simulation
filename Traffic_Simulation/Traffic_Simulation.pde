@@ -21,8 +21,9 @@ void setup() {
   size(1000, 800);
   frameRate(60);
   createGUI();
-  while (allCars.size()<18){
-  spawnCar();}
+  while (allCars.size()<18) {
+    spawnCar();
+  }
   //draws and adds lanes to array of lanes
 
   L1.addtoLaneArray();
@@ -30,7 +31,7 @@ void setup() {
   L3.addtoLaneArray();
 }
 
-void drawDashes(float x, float y, float offset){
+void drawDashes(float x, float y, float offset) {
   offset = 0;
   for (int i = 0; i < 20; i++) {
     fill(255);
@@ -42,21 +43,21 @@ void drawDashes(float x, float y, float offset){
 
 void draw() {
   noStroke();
-  
+
   //Sets text for pause button
-  if(paused) {
+  if (paused) {
     pauseButton.setText("Resume");
-  }else{
+  } else {
     pauseButton.setText("Pause");
   }
-  
+
   background(89, 239, 89);
   fill(105);
   rect(0, 300, 1000, 150);
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
   spawnRate = spawnRateSlider.getValueF();
-  
+
   //draws lanes
   L1.drawLane();
   L2.drawLane();
@@ -75,9 +76,9 @@ void draw() {
 }
 
 void spawnCar() {
-  float velx = random(speedlim*0.7,speedlim);
+  float velx = random(speedlim*0.7, speedlim);
   float vely = 0;
-  int aggr = int(random(0.8,1.2));
+  int aggr = int(random(0.8, 1.2));
   Lane carlane = chooseLane();
   float posx = -50;     
   float posy = carlane.startpoint.y+35;
