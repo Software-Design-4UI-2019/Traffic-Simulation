@@ -8,18 +8,11 @@ float coeffF = 0.05; // coeff of friction
 float avgReacTime = 0.25; // average reaction time, in seconds
 int baseAggr = 3; //base aggression
 int maxAcc = 45; // Max acceleration
-<<<<<<< HEAD
 int scaleM = 20; // scale -- how many pixels represent 1 metre
-
 int carl = 2*scaleM;
 int carw = 1*scaleM;
-int spawnRate = 2;
-
-=======
-int carl = 40;
-int carw = 20;
 float spawnRate;
->>>>>>> Added Remove Cars function.
+
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
