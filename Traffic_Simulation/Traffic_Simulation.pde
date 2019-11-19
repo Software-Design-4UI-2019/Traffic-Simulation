@@ -6,7 +6,7 @@ int speedlim;
 boolean paused = false;
 float coeffF = 0.05; // coeff of friction
 float avgReacTime = 0.25; // average reaction time, in seconds
-int baseaggr = 3; //base aggression
+int baseAggr = 3; //base aggression
 int maxAcc = 45; // Max acceleration
 int scaleM = 20; // scale -- how many pixels represent 1 metre
 
@@ -39,8 +39,8 @@ void drawDashes(float x, float y, float offset){
   offset = 0;
   for (int i = 0; i < 20; i++) {
     fill(255);
-    rect(x+offset, y, 50, 5);
-    offset += 100;
+    rect(x+offset, y, 2.5*scaleM, 0.25*scaleM);
+    offset += 5*scaleM;
   }
   fill(105);
 }

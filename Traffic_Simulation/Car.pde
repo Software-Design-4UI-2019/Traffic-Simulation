@@ -80,7 +80,7 @@ class Car {
     else{
       float currDist = PVector.dist(this.position,nextCar.position)/scaleM;
       float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
-      this.vel.setMag
+      //this.vel.setMag
     }
     
     this.position.x += this.vel.x;
