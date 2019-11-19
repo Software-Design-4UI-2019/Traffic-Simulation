@@ -26,7 +26,7 @@ class Car {
   //checks for crashes
   void crashCheck() {
     for (Car c: allCars) {
-      if (PVector.dist(c.position , this.position) / scaleM< 2){
+      if (PVector.dist(c.position , this.position) / scaleM < 2 && c != this){
         this.isCrashed = true;
       }
     }
@@ -72,7 +72,7 @@ class Car {
         nextCar = car;
       }
     }
-    if (nextCar == null){
+    if (nextCar == this){
       this.vel.setMag(min(speedlim * this.aggression,this.speed + maxAcc));
     }
     else{
