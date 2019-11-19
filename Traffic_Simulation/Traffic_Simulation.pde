@@ -66,6 +66,8 @@ void draw() {
   drawDashes(-40, 345, 100);
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
+    if (allCars.get(i).position.x > 1100){
+      allCars.remove(allCars.get(i));}
     stroke(1);
     fill(allCars.get(i).chooseColour());
     allCars.get(i).drawCar();
@@ -84,12 +86,12 @@ void spawnCar() {
   float posx = -50;     
   float posy = carlane.startpoint.y+35;
   PVector pos =  new PVector(posx, posy);
-  for (Car c : carlane.lanecars) {
-    if (PVector.dist(c.position, pos)/scaleM < 2) {
-      println("aaaa");
+  //for (Car c : carlane.lanecars) {
+  //  if (PVector.dist(c.position, pos)/scaleM < 2) {
+  //    println("aaaa");
       //return;
-    }
-  }
+    //}
+  //}
   allCars.add(new Car(vel, aggr, carlane, pos));
 }
 
