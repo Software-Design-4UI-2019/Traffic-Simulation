@@ -9,22 +9,19 @@ float avgReacTime = 0.25; // average reaction time, in seconds
 int baseAggr = 1; //base aggression
 int maxAcc = 6; // Max acceleration
 int scaleM = 20; // scale -- how many pixels represent 1 metre
-
 int carl = 2*scaleM;
 int carw = 1*scaleM;
-int spawnRate = 2;
+float spawnRate;
 
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
 
-//need to find a way to generate random variable names to randomly spawn cars
-Car x = spawnCar();
-
 void setup() {
   size(1000, 800);
   createGUI();
-
+  while (allCars.size()<18){
+  spawnCar();}
   //creates lanes and car
   spawnCar();
 
@@ -60,7 +57,7 @@ void draw() {
   rect(0, 300, 1000, 150);
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
-  
+  spawnRate = spawnRateSlider.getValueF();
   
   //draws lanes
   L1.drawLane();
@@ -79,14 +76,18 @@ void draw() {
   }
 }
 
-Car spawnCar() {
+void spawnCar() {
   float velx = random(speedlim*0.7,speedlim);
   float vely = 0;
-  int aggr = int(random(0, 5));
+  int aggr = int(random(0.8,1.2));
   Lane carlane = chooseLane();
   float posx = -50;     
   float posy = carlane.startpoint.y+35;
-  return new Car(new PVector(velx, vely), aggr, carlane, new PVector(posx, posy));
+  allCars.add(new Car(new PVector(velx, vely), aggr, carlane, new PVector(posx, posy)));
+}
+
+void clearCars() {
+  allCars.clear();
 }
 
 Lane chooseLane() {
