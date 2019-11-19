@@ -85,6 +85,7 @@ void spawnCar() {
 
 void clearCars() {
   allCars.clear();
+  println("All cars cleared.");
 }
 
 Lane chooseLane() {
