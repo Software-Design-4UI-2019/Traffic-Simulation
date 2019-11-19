@@ -5,16 +5,25 @@ ArrayList <Lane> lanes = new ArrayList <Lane>();
 int speedlim;
 boolean paused = false;
 float coeffF = 0.05; // coeff of friction
-int avgreacspeed = 3;
-int baseAggr; //base aggression
+float avgReacTime = 0.25; // average reaction time, in seconds
+int baseAggr = 3; //base aggression
 int maxAcc = 45; // Max acceleration
-int carl = 40;
-int carw = 20;
+int scaleM = 20; // scale -- how many pixels represent 1 metre
+
+int carl = 2*scaleM;
+int carw = 1*scaleM;
 int spawnRate = 2;
+
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
+<<<<<<< HEAD
 Car C1 = new Car(new PVector(9, 0), 4, L1, new PVector(-50, 385));
+=======
+
+//need to find a way to generate random variable names to randomly spawn cars
+Car x = spawnCar();
+>>>>>>> 4fe98090c2652beefd7208d8d512e9c56e32334f
 
 void setup() {
   size(1000, 800);
@@ -35,8 +44,8 @@ void drawDashes(float x, float y, float offset){
   offset = 0;
   for (int i = 0; i < 20; i++) {
     fill(255);
-    rect(x+offset, y, 50, 5);
-    offset += 100;
+    rect(x+offset, y, 2.5*scaleM, 0.25*scaleM);
+    offset += 5*scaleM;
   }
   fill(105);
 }
