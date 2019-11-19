@@ -2,7 +2,6 @@ class Car {
   PVector position;
   PVector vel;
   float speed;
-  float goalSpeed;
   float completion; //completion percentage
   
   Lane lane;
@@ -27,7 +26,7 @@ class Car {
   //checks for crashes
   void crashCheck() {
     for (Car c: allCars) {
-      if (PVector.dist(c.position , this.position)< 20){
+      if (PVector.dist(c.position , this.position) / scaleM< 1){
         this.isCrashed = true;
       }
     }
@@ -63,7 +62,7 @@ class Car {
   void updateSpeed(){
 
     if (this.isCrashed){
-      this.goalSpeed = 0;
+      this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
     }
     Car nextCar = null;
     for (Car car : this.lane.lanecars){
@@ -75,12 +74,17 @@ class Car {
       }
     }
     if (nextCar == null){
-      this.goalSpeed = speedlim * this.aggression;
+      this.vel.setMag(min(speedlim * this.aggression,this.speed + maxAcc));
     }
     else{
       float currDist = PVector.dist(this.position,nextCar.position)/scaleM;
       float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
-      //this.vel.setMag
+      if (currDist/reacDist > 1){
+        this.vel.setMag(min(this.speed*currDist/reacDist,speedlim * this.aggression, this.speed + maxAcc));
+      }
+      else{
+        this.vel.setMag(max(this.speed*currDist/reacDist, this.speed - coeffF * 9.8, 0));
+      }
     }
     
     this.position.x += this.vel.x * scaleM / frameRate;

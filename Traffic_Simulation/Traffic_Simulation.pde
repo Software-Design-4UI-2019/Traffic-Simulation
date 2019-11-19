@@ -78,11 +78,18 @@ void draw() {
 void spawnCar() {
   float velx = random(speedlim*0.7,speedlim);
   float vely = 0;
+  PVector vel = new PVector(velx, vely);
   int aggr = int(random(0.8,1.2));
   Lane carlane = chooseLane();
   float posx = -50;     
   float posy = carlane.startpoint.y+35;
-  allCars.add(new Car(new PVector(velx, vely), aggr, carlane, new PVector(posx, posy)));
+  PVector pos =  new PVector(posx, posy);
+  for (Car c: carlane.lanecars){
+    if (PVector.dist(c.position, pos)/scaleM <= 2){
+      return;
+    }
+  }
+  allCars.add(new Car(vel, aggr, carlane, pos));
 }
 
 void clearCars() {
@@ -91,20 +98,13 @@ void clearCars() {
 }
 
 Lane chooseLane() {
-  if ((L1.countCars()>6) && (L2.countCars()>6)) {
-    return L3;
-  } else if ((L2.countCars()>6) && (L3.countCars()>6)) {
-    return L1;
-  } else if ((L1.countCars()>6) && (L3.countCars()>6)) {
-    return L2;
-  } else if (L1.countCars()>6) {
-    return lanes.get(int(random(1, 2)));
-  } else if (L2.countCars()>6) {
-    int[] lanenum = {0, 2};
-    return lanes.get(int(lanenum[int(random(0, 1))]));
-  } else if (L3.countCars()>6) {
-    return lanes.get(int(random(0, 1)));
-  } else {
-    return lanes.get(int(random(0, 2)));
+  int min = lanes.get(0).countCars();
+  Lane chosenLane = lanes.get(0);
+  for (Lane l : lanes){
+    if (l.countCars() <= min){
+      min = l.countCars();
+      chosenLane = l;
+    }
   }
+  return chosenLane;
 }
