@@ -46,8 +46,27 @@ Car spawnCar(){
   int velx = int(random(5,10));
   int vely = 0;
   int aggr = int(random(0,5));
-  Lane carlane = lanes.get(int(random(0,2)));
-  float posx = -50;
+  Lane carlane = chooseLane();
+  float posx = -50;     
   float posy = carlane.startpoint.y + 35;
   return new Car(new PVector(velx,vely), aggr, carlane, new PVector(posx,posy));
 }
+
+Lane chooseLane(){
+  if ((L1.countCars()>6) && (L2.countCars()>6)){
+    return L3;
+  }
+  else if ((L2.countCars()>6) && (L3.countCars()>6)){
+    return L1;
+  }
+  else if ((L1.countCars()>6) && (L3.countCars()>6)){
+    return L2;}
+  else if (L1.countCars()>6){
+    return lanes.get(int(random(1,2)));}
+  else if (L2.countCars()>6){
+    int[] lanenum = {0,2};
+    return lanes.get(int(lanenum[int(random(0,1))]));}
+  else if (L3.countCars()>6){
+    return lanes.get(int(random(0,1)));}
+  else{
+    return lanes.get(int(random(0,2)));}}
