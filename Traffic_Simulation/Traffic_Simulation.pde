@@ -70,7 +70,6 @@ void draw() {
     stroke(1);
     fill(allCars.get(i).chooseColour());
     allCars.get(i).drawCar();
-    println(allCars.get(i).position);
     if (!paused) {
       allCars.get(i).updateSpeed();
     }
@@ -87,8 +86,9 @@ void spawnCar() {
   float posy = carlane.startpoint.y+35;
   PVector pos =  new PVector(posx, posy);
   for (Car c: carlane.lanecars){
-    if (PVector.dist(c.position, pos)/scaleM <= 2){
-      return;
+    if (PVector.dist(c.position, pos)/scaleM < 2){
+      println("aaaa");
+      //return;
     }
   }
   allCars.add(new Car(vel, aggr, carlane, pos));
