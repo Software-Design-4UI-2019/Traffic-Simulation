@@ -35,7 +35,7 @@ class Car {
 
   void drawCar() {
     fill(chooseColour());
-    rect(position.x*scaleM-carl, position.y*scaleM-carw, carl, carw);
+    rect(position.x -carl * scaleM, position.y - carw* scaleM, carl* scaleM, carw* scaleM);
   }
 
   //chooses colour of car based on speed
@@ -80,16 +80,9 @@ class Car {
       float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
       //this.vel.setMag
     }
-<<<<<<< Updated upstream
-    
+
     this.position.x += this.vel.x * scaleM / frameRate;
     this.position.y += this.vel.y * scaleM / frameRate;
-    
-=======
-
-    this.position.x += this.vel.x * scaleM;
-    this.position.y += this.vel.y * scaleM;
->>>>>>> Stashed changes
   }
 
 
