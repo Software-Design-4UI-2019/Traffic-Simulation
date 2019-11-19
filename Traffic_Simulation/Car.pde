@@ -35,7 +35,7 @@ class Car {
     
   void drawCar(){
     fill(chooseColour());
-    rect(position.x-carl,position.y-carw,carl,carw);
+    rect(position.x*scaleM-carl,position.y*scaleM-carw,carl,carw);
   }
   
   //chooses colour of car based on speed
@@ -83,8 +83,8 @@ class Car {
       //this.vel.setMag
     }
     
-    this.position.x += this.vel.x;
-    this.position.y += this.vel.y;
+    this.position.x += this.vel.x * scaleM;
+    this.position.y += this.vel.y * scaleM;
     
   }
   

@@ -2,12 +2,12 @@ import g4p_controls.*;
 
 ArrayList<Car> allCars = new ArrayList<Car>();
 ArrayList <Lane> lanes = new ArrayList <Lane>();
-int speedlim;
+float speedlim = 80/3.6;
 boolean paused = false;
 float coeffF = 0.05; // coeff of friction
 float avgReacTime = 0.25; // average reaction time, in seconds
-int baseAggr = 3; //base aggression
-int maxAcc = 45; // Max acceleration
+int baseAggr = 1; //base aggression
+int maxAcc = 6; // Max acceleration
 int scaleM = 20; // scale -- how many pixels represent 1 metre
 
 int carl = 2*scaleM;
@@ -26,7 +26,7 @@ void setup() {
   createGUI();
 
   //creates lanes and car
-
+  spawnCar();
 
   //draws and adds lanes to array of lanes
 
@@ -54,12 +54,14 @@ void draw() {
   }else{
     pauseButton.setText("Pause");
   }
+  
   background(89, 239, 89);
   fill(105);
   rect(0, 300, 1000, 150);
-  speedlim = speedLimitSlider.getValueI();
+  speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
-
+  
+  
   //draws lanes
   L1.drawLane();
   L2.drawLane();
@@ -70,6 +72,7 @@ void draw() {
   for (int i = 0; i < allCars.size(); i++) {
     fill(allCars.get(i).chooseColour());
     allCars.get(i).drawCar();
+    println(allCars.get(i).position);
     if (!paused) {
       allCars.get(i).updateSpeed();
     }
@@ -77,12 +80,12 @@ void draw() {
 }
 
 Car spawnCar() {
-  int velx = int(random(5, 10));
-  int vely = 0;
+  float velx = random(speedlim*0.7,speedlim);
+  float vely = 0;
   int aggr = int(random(0, 5));
   Lane carlane = chooseLane();
   float posx = -50;     
-  float posy = carlane.startpoint.y + 35;
+  float posy = carlane.startpoint.y+35;
   return new Car(new PVector(velx, vely), aggr, carlane, new PVector(posx, posy));
 }
 
