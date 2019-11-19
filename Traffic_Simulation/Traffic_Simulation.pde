@@ -17,7 +17,6 @@ int spawnRate = 2;
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
-<<<<<<< HEAD
 //<<<<<<< HEAD
 Car C1 = new Car(new PVector(9, 0), 4, L1, new PVector(-50, 385));
 =======
