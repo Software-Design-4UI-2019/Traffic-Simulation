@@ -18,11 +18,6 @@ Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
 //<<<<<<< HEAD
 Car C1 = new Car(new PVector(9, 0), 4, L1, new PVector(-50, 385));
-=======
-
-//need to find a way to generate random variable names to randomly spawn cars
-Car x = spawnCar();
->>>>>>> 4fe98090c2652beefd7208d8d512e9c56e32334f
 
 void setup() {
   size(1000, 800);
