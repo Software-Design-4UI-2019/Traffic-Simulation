@@ -46,7 +46,8 @@ void draw() {
   //Sets text for pause button
   if(paused) {
     pauseButton.setText("Resume");
-  }else{
+  }
+  else{
     pauseButton.setText("Pause");
   }
   
