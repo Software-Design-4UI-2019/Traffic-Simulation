@@ -12,6 +12,8 @@ int scaleM = 20; // scale -- how many pixels represent 1 metre
 
 int carl = 2*scaleM;
 int carw = 1*scaleM;
+int spawnRate = 2;
+
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
@@ -33,7 +35,19 @@ void setup() {
   L3.addtoLaneArray();
 }
 
+void drawDashes(float x, float y, float offset){
+  offset = 0;
+  for (int i = 0; i < 20; i++) {
+    fill(255);
+    rect(x+offset, y, 50, 5);
+    offset += 100;
+  }
+  fill(105);
+}
+
 void draw() {
+  noStroke();
+  
   //Sets text for pause button
   if(paused) {
     pauseButton.setText("Resume");
@@ -44,11 +58,14 @@ void draw() {
   fill(105);
   rect(0, 300, 1000, 150);
   speedlim = speedLimitSlider.getValueI();
+  baseAggr = aggressionSlider.getValueI();
 
   //draws lanes
   L1.drawLane();
   L2.drawLane();
   L3.drawLane();
+  drawDashes(-40, 400, 100);
+  drawDashes(-40, 345, 100);
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
     fill(allCars.get(i).chooseColour());
