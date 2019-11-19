@@ -26,6 +26,14 @@ public void aggressionSliderChanged(GSlider source, GEvent event) { //_CODE_:agg
 
 } //_CODE_:aggressionSlider:318674:
 
+public void spawnRateSliderChanged(GSlider source, GEvent event) { //_CODE_:spawnRateSlider:743526:
+
+} //_CODE_:spawnRateSlider:743526:
+
+public void clearCarsButtonClicked(GButton source, GEvent event) { //_CODE_:clearCarsButton:777780:
+  clearCars();
+} //_CODE_:clearCarsButton:777780:
+
 
 
 // Create all the GUI controls. 
@@ -59,12 +67,31 @@ public void createGUI(){
   label2.setLocalColorScheme(GCScheme.RED_SCHEME);
   label2.setOpaque(false);
   aggressionSlider = new GSlider(this, 400, 0, 100, 40, 10.0);
+  aggressionSlider.setShowValue(true);
   aggressionSlider.setShowLimits(true);
   aggressionSlider.setLimits(3.0, 0.0, 5.0);
   aggressionSlider.setNumberFormat(G4P.DECIMAL, 2);
   aggressionSlider.setLocalColorScheme(GCScheme.RED_SCHEME);
   aggressionSlider.setOpaque(false);
   aggressionSlider.addEventHandler(this, "aggressionSliderChanged");
+  label3 = new GLabel(this, 500, 10, 90, 20);
+  label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label3.setText("Spawn Rate");
+  label3.setTextBold();
+  label3.setOpaque(false);
+  spawnRateSlider = new GSlider(this, 590, 0, 100, 40, 10.0);
+  spawnRateSlider.setShowValue(true);
+  spawnRateSlider.setShowLimits(true);
+  spawnRateSlider.setLimits(1.0, 0.0, 5.0);
+  spawnRateSlider.setNumberFormat(G4P.DECIMAL, 2);
+  spawnRateSlider.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  spawnRateSlider.setOpaque(false);
+  spawnRateSlider.addEventHandler(this, "spawnRateSliderChanged");
+  clearCarsButton = new GButton(this, 10, 50, 80, 30);
+  clearCarsButton.setText("Clear Cars");
+  clearCarsButton.setTextBold();
+  clearCarsButton.setLocalColorScheme(GCScheme.RED_SCHEME);
+  clearCarsButton.addEventHandler(this, "clearCarsButtonClicked");
 }
 
 // Variable declarations 
@@ -74,3 +101,6 @@ GLabel label1;
 GButton pauseButton; 
 GLabel label2; 
 GSlider aggressionSlider; 
+GLabel label3; 
+GSlider spawnRateSlider; 
+GButton clearCarsButton; 

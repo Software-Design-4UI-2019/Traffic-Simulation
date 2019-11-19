@@ -9,10 +9,9 @@ float avgReacTime = 0.25; // average reaction time, in seconds
 int baseAggr = 3; //base aggression
 int maxAcc = 45; // Max acceleration
 int scaleM = 20; // scale -- how many pixels represent 1 metre
-
 int carl = 2*scaleM;
 int carw = 1*scaleM;
-int spawnRate = 2;
+float spawnRate;
 
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
@@ -64,6 +63,7 @@ void draw() {
   rect(0, 300, 1000, 150);
   speedlim = speedLimitSlider.getValueI();
   baseAggr = aggressionSlider.getValueI();
+  spawnRate = spawnRateSlider.getValueF();
 
   //draws lanes
   L1.drawLane();
@@ -89,6 +89,10 @@ void spawnCar() {
   float posx = -50;     
   float posy = carlane.startpoint.y + 35;
   allCars.add(new Car(new PVector(velx, vely), aggr, carlane, new PVector(posx, posy)));
+}
+
+void clearCars() {
+  allCars.clear();
 }
 
 Lane chooseLane() {
