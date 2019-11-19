@@ -25,8 +25,8 @@ class Car {
 
   //checks for crashes
   void crashCheck() {
-    for (Car c: allCars) {
-      if (PVector.dist(c.position , this.position) / scaleM < 2 && c != this){
+    for (Car c : allCars) {
+      if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
         this.isCrashed = true;
       }
     }
@@ -61,7 +61,7 @@ class Car {
   //updates speed of cars
   void updateSpeed() {
 
-    if (this.isCrashed){
+    if (this.isCrashed) {
       this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
     }
     Car nextCar = null;
@@ -72,16 +72,14 @@ class Car {
         nextCar = car;
       }
     }
-    if (nextCar == this){
-      this.vel.setMag(min(speedlim * this.aggression,this.speed + maxAcc));
-    }
-    else{
-      float currDist = PVector.dist(this.position,nextCar.position)/scaleM;
+    if (nextCar == this) {
+      this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc));
+    } else {
+      float currDist = PVector.dist(this.position, nextCar.position)/scaleM;
       float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
-      if (currDist/reacDist > 1){
-        this.vel.setMag(min(this.speed*currDist/reacDist,speedlim * this.aggression, this.speed + maxAcc));
-      }
-      else{
+      if (currDist/reacDist > 1) {
+        this.vel.setMag(min(this.speed*currDist/reacDist, speedlim * this.aggression, this.speed + maxAcc));
+      } else {
         this.vel.setMag(max(this.speed*currDist/reacDist, this.speed - coeffF * 9.8, 0));
       }
     }

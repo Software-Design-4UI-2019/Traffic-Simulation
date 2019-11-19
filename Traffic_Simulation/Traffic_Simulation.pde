@@ -47,8 +47,7 @@ void draw() {
   //Sets text for pause button
   if (paused) {
     pauseButton.setText("Resume");
-  }
-  else{
+  } else {
     pauseButton.setText("Pause");
   }
 
@@ -80,13 +79,13 @@ void spawnCar() {
   float velx = random(speedlim*0.7, speedlim);
   float vely = 0;
   PVector vel = new PVector(velx, vely);
-  int aggr = int(random(0.8,1.2));
+  int aggr = int(random(0.8, 1.2));
   Lane carlane = chooseLane();
   float posx = -50;     
   float posy = carlane.startpoint.y+35;
   PVector pos =  new PVector(posx, posy);
-  for (Car c: carlane.lanecars){
-    if (PVector.dist(c.position, pos)/scaleM < 2){
+  for (Car c : carlane.lanecars) {
+    if (PVector.dist(c.position, pos)/scaleM < 2) {
       println("aaaa");
       //return;
     }
@@ -102,8 +101,8 @@ void clearCars() {
 Lane chooseLane() {
   int min = lanes.get(0).countCars();
   Lane chosenLane = lanes.get(0);
-  for (Lane l : lanes){
-    if (l.countCars() <= min){
+  for (Lane l : lanes) {
+    if (l.countCars() <= min) {
       min = l.countCars();
       chosenLane = l;
     }
