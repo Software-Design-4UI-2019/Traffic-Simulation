@@ -6,6 +6,7 @@ class Car {
   PVector position;
   boolean isCrashed;
   float completion;
+  float speed;
   
   Car(PVector v, float a, Lane l, PVector pos) {
     this.vel = v;
@@ -29,7 +30,6 @@ class Car {
   void drawCar(){
     fill(chooseColour());
     rect(position.x-carl,position.y-carw,carl,carw);
-    println(speed);
   }
   
   //chooses colour of car based on speed

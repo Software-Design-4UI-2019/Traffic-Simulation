@@ -10,22 +10,21 @@ int carw = 20;
 Lane L1 = new Lane(new PVector(0,300),new PVector(1000,300),1);
 Lane L2 = new Lane(new PVector(0,350),new PVector(1000,350),2);
 Lane L3 = new Lane(new PVector(0,400),new PVector(1000,400),3);
-Car C1 = new Car(new PVector(60,10), 4, L1, new PVector(-50,385));
+Car C1 = new Car(new PVector(9,0), 4, L1, new PVector(-50,385));
+//need to find a way to generate random variable names to randomly spawn cars
+Car x = spawnCar();
 
 void setup(){
  size(1000,800);
  //creates lanes and car
- 
+
 
 //draws and adds lanes to array of lanes
 
  L1.addtoLaneArray();
  L2.addtoLaneArray();
- L3.addtoLaneArray();    
- fill(C1.chooseColour());
- C1.vel = new PVector(30,0);
- allCars.add(C1);
- 
+ L3.addtoLaneArray();
+
 }
 
 void draw(){
@@ -36,24 +35,19 @@ void draw(){
  L1.drawLane();
  L2.drawLane();
  L3.drawLane();
- allCars.get(0).drawCar();
- C1.updateSpeed();
- println(C1.vel);
+ //does things for each car
+ for (int i = 0; i < allCars.size(); i++){
+   fill(allCars.get(i).chooseColour());
+   allCars.get(i).drawCar();
+   allCars.get(i).updateSpeed();}
 }
 
-void spawncar(){
-  int velx = int(random(1,100));
-  int vely = int(random(1,2));
+Car spawnCar(){
+  int velx = int(random(5,10));
+  int vely = 0;
   int aggr = int(random(0,5));
   Lane carlane = lanes.get(int(random(0,2)));
   float posx = -50;
-  float posy = carlane.startpoint.y + 25;
-  while (allCars.size() < 25){
-    int x = 2;
-    //Car ("C"+x) = new Car(new PVector(velx,vely), aggr, carlane, new PVector(posx,posy));
-    
-  }
-  
-  
-  
+  float posy = carlane.startpoint.y + 35;
+  return new Car(new PVector(velx,vely), aggr, carlane, new PVector(posx,posy));
 }
