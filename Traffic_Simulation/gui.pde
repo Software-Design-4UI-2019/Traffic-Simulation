@@ -76,7 +76,7 @@ public void createGUI(){
   aggressionSlider = new GSlider(this, 400, 0, 100, 40, 10.0);
   aggressionSlider.setShowValue(true);
   aggressionSlider.setShowLimits(true);
-  aggressionSlider.setLimits(3.0, 0.0, 5.0);
+  aggressionSlider.setLimits(1.0, 0.0, 2.0);
   aggressionSlider.setNumberFormat(G4P.DECIMAL, 2);
   aggressionSlider.setLocalColorScheme(GCScheme.RED_SCHEME);
   aggressionSlider.setOpaque(false);

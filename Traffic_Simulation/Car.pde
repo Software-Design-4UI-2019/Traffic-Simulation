@@ -83,8 +83,8 @@ class Car {
       //this.vel.setMag
     }
     
-    this.position.x += this.vel.x * scaleM;
-    this.position.y += this.vel.y * scaleM;
+    this.position.x += this.vel.x * scaleM / frameRate;
+    this.position.y += this.vel.y * scaleM / frameRate;
     
   }
   
