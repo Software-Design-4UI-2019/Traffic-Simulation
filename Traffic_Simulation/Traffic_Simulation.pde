@@ -2,15 +2,15 @@ import g4p_controls.*;
 
 ArrayList<Car> allCars = new ArrayList<Car>();
 ArrayList <Lane> lanes = new ArrayList <Lane>();
-float speedlim = 80/3.6;
+float speedlim = 40/3.6;
 boolean paused = false;
 float coeffF = 0.05; // coeff of friction
 float avgReacTime = 0.25; // average reaction time, in seconds
 int baseAggr = 1; //base aggression
 int maxAcc = 6; // Max acceleration
 int scaleM = 20; // scale -- how many pixels represent 1 metre
-int carl = 2*scaleM;
-int carw = 1*scaleM;
+int carl = 2;
+int carw = 1;
 float spawnRate;
 
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
