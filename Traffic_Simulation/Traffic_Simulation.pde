@@ -19,6 +19,7 @@ Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
 
 void setup() {
   size(1000, 800);
+  frameRate(60);
   createGUI();
   while (allCars.size()<18){
   spawnCar();}
