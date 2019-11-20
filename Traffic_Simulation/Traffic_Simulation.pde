@@ -68,13 +68,14 @@ void draw() {
   if (timepassed%spawnRate == 0) {
     spawnCar();
   }
-
+  
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
 
     stroke(1);
     fill(allCars.get(i).chooseColour());
     allCars.get(i).drawCar();
+    
     if (!paused) {
       allCars.get(i).updateSpeed();
       if (allCars.get(i).position.x > width+50) {
@@ -88,17 +89,10 @@ void spawnCar() {
   float velx = random(speedlim*0.7, speedlim);
   float vely = 0;
   PVector vel = new PVector(velx, vely);
-  int aggr = int(random(0.8, 1.2));
   Lane carlane = chooseLane();
   float posx = -50;     
   float posy = carlane.startpoint.y+35;
   PVector pos =  new PVector(posx, posy);
-  //for (Car c : carlane.lanecars) {
-  //  if (PVector.dist(c.position, pos)/scaleM < 2) {
-  //    println("aaaa");
-  //    return;
-  //  }
-  //}
   allCars.add(new Car(vel, aggr, carlane, pos));
 }
 
