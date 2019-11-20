@@ -13,12 +13,12 @@ int carw = 1;
 float spawnRate;
 float timepassed;
 
-Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
-Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
-Lane L3 = new Lane(new PVector(0, 400), new PVector(1000, 400), 3);
+Lane L1 = new Lane(new PVector(0, 300), new PVector(width, 300), 1);
+Lane L2 = new Lane(new PVector(0, 350), new PVector(width, 350), 2);
+Lane L3 = new Lane(new PVector(0, 400), new PVector(width, 400), 3);
 
 void setup() {
-  size(1000, 800);
+  size(1200, 1000);
   frameRate(60);
   createGUI();
 
@@ -51,10 +51,10 @@ void draw() {
 
   background(89, 239, 89);
   fill(105);
-  rect(0, 300, 1000, 150);
+  rect(0, 300, width, 150);
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
-  spawnRate = getSpawnRate();
+  spawnRate = getSpawnRate()*3;
 
   //draws lanes
   L1.drawLane();
@@ -62,13 +62,13 @@ void draw() {
   L3.drawLane();
   drawDashes(-40, 400, 100);
   drawDashes(-40, 345, 100);
-  
+
   //continuously spawns cars
-  
-  if (timepassed%spawnRate == 0){
-      spawnCar();
+
+  if (timepassed%spawnRate == 0) {
+    spawnCar();
   }
-  
+
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
 
@@ -77,11 +77,11 @@ void draw() {
     allCars.get(i).drawCar();
     if (!paused) {
       allCars.get(i).updateSpeed();
-    if (allCars.get(i).position.x > 1100){
-      allCars.remove(allCars.get(i));
+      if (allCars.get(i).position.x > width+50) {
+        allCars.remove(allCars.get(i));
+      }
     }
   }
-}
 }
 
 void spawnCar() {
@@ -119,17 +119,24 @@ Lane chooseLane() {
   return chosenLane;
 }
 
-float getSpawnRate(){
+float getSpawnRate() {
   float x;
-    if (spawnRateSlider.getValueI() == 5){
-    x = 1;}
-  else if (spawnRateSlider.getValueI() == 4){
-    x = 2;}
-  else if (spawnRateSlider.getValueI() == 3){
-    x = 3;}
-  else if (spawnRateSlider.getValueI() == 2){
-    x = 4;}   
-  else{
-    x = 5;}
-   return x;
+  switch (spawnRateSlider.getValueI()) {
+  case 5:
+    x = 1;
+    break;
+  case 4:
+    x = 2;
+    break;
+  case 3:
+    x = 3;
+    break;
+  case 2:
+    x = 4;
+    break;
+  default:
+    x = 5;
+    break;
+  }
+  return x;
 }
