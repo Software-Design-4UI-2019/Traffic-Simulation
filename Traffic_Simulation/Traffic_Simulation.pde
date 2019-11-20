@@ -1,6 +1,4 @@
 import g4p_controls.*;
-
-
 ArrayList<Car> allCars = new ArrayList<Car>();
 ArrayList <Lane> lanes = new ArrayList <Lane>();
 float speedlim = 40/3.6;
@@ -13,6 +11,7 @@ int scaleM = 20; // scale -- how many pixels represent 1 metre
 int carl = 2;
 int carw = 1;
 float spawnRate;
+float timepassed;
 
 Lane L1 = new Lane(new PVector(0, 300), new PVector(1000, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(1000, 350), 2);
@@ -22,9 +21,7 @@ void setup() {
   size(1000, 800);
   frameRate(60);
   createGUI();
-  while (allCars.size()<18) {
-    spawnCar();
-  }
+
   //draws and adds lanes to array of lanes
 
   L1.addtoLaneArray();
@@ -43,8 +40,8 @@ void drawDashes(float x, float y, float offset) {
 }
 
 void draw() {
+  timepassed = millis();
   noStroke();
-
   //Sets text for pause button
   if (paused) {
     pauseButton.setText("Resume");
@@ -65,6 +62,13 @@ void draw() {
   L3.drawLane();
   drawDashes(-40, 400, 100);
   drawDashes(-40, 345, 100);
+  
+  //continuously spawns cars
+  
+  if (timepassed%2 == 0){
+      spawnCar();
+  }
+  
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
 
@@ -76,8 +80,8 @@ void draw() {
     if (allCars.get(i).position.x > 1100){
       allCars.remove(allCars.get(i));
     }
-    }
   }
+}
 }
 
 void spawnCar() {
@@ -114,3 +118,8 @@ Lane chooseLane() {
   }
   return chosenLane;
 }
+
+//void calculateSpawnRate(){
+//  if (spawnRateSlider == 5){
+//  }
+//}

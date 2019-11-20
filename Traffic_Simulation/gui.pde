@@ -25,19 +25,17 @@ public void aggressionSliderChanged(GSlider source, GEvent event) { //_CODE_:agg
 } //_CODE_:aggressionSlider:318674:
 
 public void spawnRateSliderChanged(GSlider source, GEvent event) { //_CODE_:spawnRateSlider:743526:
+ // if (spawnRateSlider.F)
 } //_CODE_:spawnRateSlider:743526:
 
 public void clearCarsButtonClicked(GButton source, GEvent event) { //_CODE_:clearCarsButton:777780:
   clearCars();
 } //_CODE_:clearCarsButton:777780:
 
-public void resetButtonClicked(GButton source, GEvent event) { //_CODE_:resetbutton:417459:
-  clearCars();
-  Car C1 = new Car(new PVector(9, 0), 4, L1, new PVector(-50, 385));
-  while (allCars.size()<18) {
-    spawnCar();
-  }
-} //_CODE_:resetbutton:417459:
+public void resetButtonClicked(GButton source, GEvent event) { //_CODE_:resetButton:719661:
+ clearCars();
+ draw();
+} //_CODE_:resetButton:719661:
 
 
 
@@ -84,7 +82,7 @@ public void createGUI(){
   label3.setText("Spawn Rate");
   label3.setTextBold();
   label3.setOpaque(false);
-  spawnRateSlider = new GSlider(this, 590, 0, 100, 40, 10.0);
+  spawnRateSlider = new GSlider(this, 591, 1, 100, 40, 10.0);
   spawnRateSlider.setShowValue(true);
   spawnRateSlider.setShowLimits(true);
   spawnRateSlider.setLimits(1.0, 0.0, 5.0);
