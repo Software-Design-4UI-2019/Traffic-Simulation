@@ -41,7 +41,7 @@ public void createGUI(){
   G4P.messagesEnabled(false);
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
-  surface.setTitle("Sketch Window");
+  surface.setTitle("DriveBy");
   speedLimitSlider = new GSlider(this, 200, 10, 100, 40, 10.0);
   speedLimitSlider.setShowValue(true);
   speedLimitSlider.setShowLimits(true);
