@@ -28,6 +28,7 @@ class Car {
     for (Car c : allCars) {
       if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
         this.isCrashed = true;
+        println("crash");
       }
     }
   }
@@ -35,6 +36,7 @@ class Car {
   void drawCar() {
     fill(chooseColour());
     rect(position.x - carl * scaleM, position.y - carw * scaleM, carl * scaleM, carw * scaleM);
+    
   }
 
   //chooses colour of car based on speed
