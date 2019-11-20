@@ -54,7 +54,7 @@ void draw() {
   rect(0, 300, 1000, 150);
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
-  spawnRate = spawnRateSlider.getValueF();
+  spawnRate = getSpawnRate();
 
   //draws lanes
   L1.drawLane();
@@ -65,7 +65,7 @@ void draw() {
   
   //continuously spawns cars
   
-  if (timepassed%2 == 0){
+  if (timepassed%spawnRate == 0){
       spawnCar();
   }
   
@@ -96,8 +96,8 @@ void spawnCar() {
   //for (Car c : carlane.lanecars) {
   //  if (PVector.dist(c.position, pos)/scaleM < 2) {
   //    println("aaaa");
-      //return;
-    //}
+  //    return;
+  //  }
   //}
   allCars.add(new Car(vel, aggr, carlane, pos));
 }
@@ -119,7 +119,17 @@ Lane chooseLane() {
   return chosenLane;
 }
 
-//void calculateSpawnRate(){
-//  if (spawnRateSlider == 5){
-//  }
-//}
+float getSpawnRate(){
+  float x;
+    if (spawnRateSlider.getValueI() == 5){
+    x = 1;}
+  else if (spawnRateSlider.getValueI() == 4){
+    x = 2;}
+  else if (spawnRateSlider.getValueI() == 3){
+    x = 3;}
+  else if (spawnRateSlider.getValueI() == 2){
+    x = 4;}   
+  else{
+    x = 5;}
+   return x;
+}

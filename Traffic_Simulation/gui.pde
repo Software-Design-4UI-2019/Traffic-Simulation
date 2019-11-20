@@ -25,12 +25,8 @@ public void aggressionSliderChanged(GSlider source, GEvent event) { //_CODE_:agg
 } //_CODE_:aggressionSlider:318674:
 
 public void spawnRateSliderChanged(GSlider source, GEvent event) { //_CODE_:spawnRateSlider:743526:
- // if (spawnRateSlider.F)
-} //_CODE_:spawnRateSlider:743526:
 
-public void clearCarsButtonClicked(GButton source, GEvent event) { //_CODE_:clearCarsButton:777780:
-  clearCars();
-} //_CODE_:clearCarsButton:777780:
+  } //_CODE_:spawnRateSlider:743526:
 
 public void resetButtonClicked(GButton source, GEvent event) { //_CODE_:resetButton:719661:
  clearCars();
@@ -46,14 +42,14 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  speedLimitSlider = new GSlider(this, 190, 0, 100, 40, 10.0);
+  speedLimitSlider = new GSlider(this, 190, 25, 100, 40, 10.0);
   speedLimitSlider.setShowValue(true);
   speedLimitSlider.setShowLimits(true);
-  speedLimitSlider.setLimits(80.0, 60.0, 120.0);
-  speedLimitSlider.setNumberFormat(G4P.DECIMAL, 2);
+  speedLimitSlider.setLimits(80, 60, 120);
+  speedLimitSlider.setNumberFormat(G4P.INTEGER, 0);
   speedLimitSlider.setOpaque(false);
   speedLimitSlider.addEventHandler(this, "speedLimitSliderChanged");
-  label1 = new GLabel(this, 100, 10, 90, 20);
+  label1 = new GLabel(this, 100, 35, 90, 20);
   label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label1.setText("Speed Limit");
   label1.setTextBold();
@@ -63,41 +59,41 @@ public void createGUI(){
   pauseButton.setTextBold();
   pauseButton.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   pauseButton.addEventHandler(this, "pauseButtonClicked");
-  label2 = new GLabel(this, 300, 10, 90, 20);
+  label2 = new GLabel(this, 300, 35, 90, 20);
   label2.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label2.setText("Aggression");
   label2.setTextBold();
   label2.setLocalColorScheme(GCScheme.RED_SCHEME);
   label2.setOpaque(false);
-  aggressionSlider = new GSlider(this, 400, 0, 100, 40, 10.0);
+  aggressionSlider = new GSlider(this, 400, 25, 100, 40, 10.0);
   aggressionSlider.setShowValue(true);
   aggressionSlider.setShowLimits(true);
-  aggressionSlider.setLimits(1.0, 0.0, 2.0);
-  aggressionSlider.setNumberFormat(G4P.DECIMAL, 2);
+  aggressionSlider.setLimits(1, 0, 2);
+  aggressionSlider.setNumberFormat(G4P.INTEGER, 0);
   aggressionSlider.setLocalColorScheme(GCScheme.RED_SCHEME);
   aggressionSlider.setOpaque(false);
   aggressionSlider.addEventHandler(this, "aggressionSliderChanged");
-  label3 = new GLabel(this, 500, 10, 90, 20);
+  label3 = new GLabel(this, 500, 35, 90, 20);
   label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label3.setText("Spawn Rate");
   label3.setTextBold();
+  label3.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   label3.setOpaque(false);
-  spawnRateSlider = new GSlider(this, 591, 1, 100, 40, 10.0);
+  spawnRateSlider = new GSlider(this, 591, 25, 100, 40, 10.0);
   spawnRateSlider.setShowValue(true);
   spawnRateSlider.setShowLimits(true);
-  spawnRateSlider.setLimits(1.0, 0.0, 5.0);
-  spawnRateSlider.setNumberFormat(G4P.DECIMAL, 2);
-  spawnRateSlider.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  spawnRateSlider.setLimits(3, 1, 5);
+  spawnRateSlider.setNbrTicks(5);
+  spawnRateSlider.setStickToTicks(true);
+  spawnRateSlider.setShowTicks(true);
+  spawnRateSlider.setNumberFormat(G4P.INTEGER, 0);
+  spawnRateSlider.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   spawnRateSlider.setOpaque(false);
   spawnRateSlider.addEventHandler(this, "spawnRateSliderChanged");
-  clearCarsButton = new GButton(this, 10, 50, 80, 30);
-  clearCarsButton.setText("Clear Cars");
-  clearCarsButton.setTextBold();
-  clearCarsButton.setLocalColorScheme(GCScheme.RED_SCHEME);
-  clearCarsButton.addEventHandler(this, "clearCarsButtonClicked");
-  resetButton = new GButton(this, 10, 90, 80, 30);
+  resetButton = new GButton(this, 10, 50, 80, 30);
   resetButton.setText("Reset");
   resetButton.setTextBold();
+  resetButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   resetButton.addEventHandler(this, "resetButtonClicked");
 }
 
@@ -110,5 +106,4 @@ GLabel label2;
 GSlider aggressionSlider; 
 GLabel label3; 
 GSlider spawnRateSlider; 
-GButton clearCarsButton; 
 GButton resetButton; 
