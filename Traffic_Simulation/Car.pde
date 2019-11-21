@@ -43,21 +43,8 @@ class Car {
 
 //chooses colour of car based on speed
   color chooseColour() {
-    
-    carColour = color(30, 150, 30);
-    if (this.speed >= 0 || this.speed < 20) {
-      carColour = color(0, 255, 255);
-    } else if (this.speed >= 20 || this.speed < 40) {
-      carColour = color(40, 255, 255);
-    } else if (this.speed >= 40 || this.speed < 60) {
-      carColour = color(80, 255, 255);
-    } else if (this.speed >= 60 || this.speed < 80) {
-      carColour = color(120, 255, 255);
-    } else if (this.speed >= 80 || this.speed < 100) {
-      carColour = color(160, 255, 255);
-    } else if (this.speed >= 100 || this.speed < 120) {
-      carColour = color(200, 255, 255);
-    }
+    println(this.speed, this.speed * 255 / (120-40));
+    this.carColour = color(int(this.speed * 255 / speedlim),255,255);
     return carColour;
   }
 
