@@ -4,7 +4,7 @@ ArrayList<Car> allCars = new ArrayList<Car>();
 ArrayList <Lane> lanes = new ArrayList <Lane>();
 float speedlim = 40/3.6;
 boolean paused = false;
-float coeffF = 0.05; // coefficient of friction
+float coeffF = 0.7; // coefficient of friction
 float avgReacTime = 0.25; // average reaction time, in seconds
 float baseAggr; //base aggression global
 int maxAcc = 6; // Max acceleration

@@ -26,7 +26,7 @@ class Car {
   //checks for crashes
   void crashCheck() {
     for (Car c : allCars) {
-      if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
+      if (PVector.dist(c.position, this.position) / scaleM < 1.5 && c != this) {
         this.isCrashed = true;
         println("crash");
       }
@@ -62,7 +62,7 @@ class Car {
 
 //updates speed of cars (thus driving the animation)
   void updateSpeed() {
-
+    this.crashCheck();
     if (this.isCrashed) {
       this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
     }
