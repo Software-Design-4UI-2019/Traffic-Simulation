@@ -1,18 +1,20 @@
+//imports GUI and creates global variables
 import g4p_controls.*;
 ArrayList<Car> allCars = new ArrayList<Car>();
 ArrayList <Lane> lanes = new ArrayList <Lane>();
 float speedlim = 40/3.6;
 boolean paused = false;
-float coeffF = 0.05; // coeff of friction
+float coeffF = 0.05; // coefficient of friction
 float avgReacTime = 0.25; // average reaction time, in seconds
-int baseAggr = 1; //base aggression
+float baseAggr; //base aggression global
 int maxAcc = 6; // Max acceleration
 int scaleM = 20; // scale -- how many pixels represent 1 metre
-int carl = 2;
-int carw = 1;
-float spawnRate;
-float timepassed;
+int carl = 2; // length of a car
+int carw = 1; // width of a car
+float spawnRate; // spawn rate global
+float timepassed; //time passed in program global
 
+//creates car lanes
 Lane L1 = new Lane(new PVector(0, 300), new PVector(width, 300), 1);
 Lane L2 = new Lane(new PVector(0, 350), new PVector(width, 350), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(width, 400), 3);
@@ -21,16 +23,17 @@ void setup() {
   size(1200, 1000);
   frameRate(60);
   createGUI();
-
-  //draws and adds lanes to array of lanes
-
-  L1.addtoLaneArray();
-  L2.addtoLaneArray();
-  L3.addtoLaneArray();
+  
+  //draws lanes
+  for (int i = 0; i < lanes.size(); i ++){
+    lanes.get(i).drawLane();
+  }
 }
 
+//draws dashes that separate lanes from each other
 void drawDashes(float x, float y, float offset) {
   offset = 0;
+  //offsets lines to create "dash" effect
   for (int i = 0; i < 20; i++) {
     fill(255);
     rect(x+offset, y, 2.5*scaleM, 0.25*scaleM);
@@ -40,8 +43,10 @@ void drawDashes(float x, float y, float offset) {
 }
 
 void draw() {
+  //calculates the time passed since the program began running
   timepassed = millis();
   noStroke();
+  
   //Sets text for pause button
   if (paused) {
     pauseButton.setText("Resume");
@@ -49,9 +54,12 @@ void draw() {
     pauseButton.setText("Pause");
   }
 
+  //creates background and grass
   background(89, 239, 89);
   fill(105);
   rect(0, 300, width, 150);
+  
+  //fetches values from sliders
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
   spawnRate = getSpawnRate()*3;
@@ -64,7 +72,6 @@ void draw() {
   drawDashes(-40, 345, 100);
 
   //continuously spawns cars
-
   if (timepassed%spawnRate == 0) {
     spawnCar();
   }
@@ -73,9 +80,11 @@ void draw() {
   for (int i = 0; i < allCars.size(); i++) {
 
     stroke(1);
+    //assigns a colour to each car
     fill(allCars.get(i).chooseColour());
     allCars.get(i).drawCar();
     
+    //pauses animation if user clicks "pause" button
     if (!paused) {
       allCars.get(i).updateSpeed();
       if (allCars.get(i).position.x > width+50) {
@@ -85,6 +94,7 @@ void draw() {
   }
 }
 
+//spawns a car using randomly generated velocity and lane values and adds it to the allCars array
 void spawnCar() {
   float velx = random(speedlim*0.7, speedlim);
   float vely = 0;
@@ -93,15 +103,17 @@ void spawnCar() {
   float posx = -50;     
   float posy = carlane.startpoint.y+35;
   PVector pos =  new PVector(posx, posy);
-  allCars.add(new Car(vel, aggr, carlane, pos));
+  allCars.add(new Car(vel, baseAggr, carlane, pos));
 }
 
+//clears all cars on screen
 void clearCars() {
   allCars.clear();
-  println("All cars cleared.");
 }
 
+//selects a lane for a new car to appear in (this function is called when the spawnCar function is called
 Lane chooseLane() {
+  //sees which lane has the least amount of cars within it
   int min = lanes.get(0).countCars();
   Lane chosenLane = lanes.get(0);
   for (Lane l : lanes) {
@@ -113,6 +125,9 @@ Lane chooseLane() {
   return chosenLane;
 }
 
+//reassigns spawn rate based on what user selects on the slider (the spawn rate variable is used with the timepassed variable
+//assume n = spawnrate; a new car spawns every n seconds
+//therefore, we can't use the user chosen spawn rate as a higher spawn rate means cars spawn less frequently! it must be reassigned
 float getSpawnRate() {
   float x;
   switch (spawnRateSlider.getValueI()) {

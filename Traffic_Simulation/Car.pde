@@ -2,11 +2,9 @@ class Car {
   PVector position;
   PVector vel;
   float speed;
-  float completion; //completion percentage
-
-  Lane lane;
+  float completion; //how far along the lane the car is
+  Lane lane; //what lane the car is in
   boolean isCrashed;
-
   float aggression;
   float reacTime;//reaction time
 
@@ -17,11 +15,13 @@ class Car {
     this.position = pos;
     this.reacTime = avgReacTime + randomGaussian() * 0.1;
 
+//adds car to allCars array and to an array of cars within each lane
     allCars.add(this);
     this.lane.lanecars.add(this);
+    
+//creates a scalar value based on the car's velocity
     speed = mag(this.vel.x, this.vel.y);
   }
-
 
   //checks for crashes
   void crashCheck() {
@@ -33,13 +33,13 @@ class Car {
     }
   }
 
+//draws each car
   void drawCar() {
-    fill(chooseColour());
     rect(position.x - carl * scaleM, position.y - carw * scaleM, carl * scaleM, carw * scaleM);
     
   }
 
-  //chooses colour of car based on speed
+//chooses colour of car based on speed
   color chooseColour() {
     colorMode(HSB, 255);
     color carColour = color(30, 150, 30);
@@ -60,7 +60,7 @@ class Car {
   }
 
 
-  //updates speed of cars
+//updates speed of cars (thus driving the animation)
   void updateSpeed() {
 
     if (this.isCrashed) {
@@ -90,7 +90,7 @@ class Car {
     this.position.y += this.vel.y * scaleM / frameRate;
   }
 
-
+//changes the lane of a car
   void changeLanes(String d) {
     Lane currLane = this.lane;
   }
