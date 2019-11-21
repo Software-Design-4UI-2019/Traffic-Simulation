@@ -44,7 +44,7 @@ public void createGUI(){
   speedLimitSlider = new GSlider(this, 200, 10, 100, 40, 10.0);
   speedLimitSlider.setShowValue(true);
   speedLimitSlider.setShowLimits(true);
-  speedLimitSlider.setLimits(80, 60, 120);
+  speedLimitSlider.setLimits(80, 30, 120);
   speedLimitSlider.setNumberFormat(G4P.INTEGER, 0);
   speedLimitSlider.setOpaque(false);
   speedLimitSlider.addEventHandler(this, "speedLimitSliderChanged");
