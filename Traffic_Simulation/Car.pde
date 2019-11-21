@@ -7,7 +7,7 @@ class Car {
   boolean isCrashed;
   float aggression;
   float reacTime;//reaction time
-
+  color carColour;
   Car(PVector v, float a, Lane l, PVector pos) {
     this.vel = v;
     this.aggression = a;
@@ -26,23 +26,25 @@ class Car {
   //checks for crashes
   void crashCheck() {
     for (Car c : allCars) {
-      if (PVector.dist(c.position, this.position) / scaleM < 1.5 && c != this) {
+      if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
+        println(PVector.dist(c.position, this.position));
         this.isCrashed = true;
-        println("crash");
       }
     }
   }
 
 //draws each car
   void drawCar() {
+    this.chooseColour();
+    fill(carColour);
     rect(position.x - carl * scaleM, position.y - carw * scaleM, carl * scaleM, carw * scaleM);
     
   }
 
 //chooses colour of car based on speed
   color chooseColour() {
-    colorMode(HSB, 255);
-    color carColour = color(30, 150, 30);
+    
+    carColour = color(30, 150, 30);
     if (this.speed >= 0 || this.speed < 20) {
       carColour = color(0, 255, 255);
     } else if (this.speed >= 20 || this.speed < 40) {
@@ -62,7 +64,6 @@ class Car {
 
 //updates speed of cars (thus driving the animation)
   void updateSpeed() {
-    this.crashCheck();
     if (this.isCrashed) {
       this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
     }

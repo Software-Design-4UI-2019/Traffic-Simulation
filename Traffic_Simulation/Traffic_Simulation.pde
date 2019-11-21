@@ -23,7 +23,7 @@ void setup() {
   size(1200, 960);
   frameRate(60);
   createGUI();
-  
+  colorMode(HSB, 255);
   //draws lanes
   for (int i = 0; i < lanes.size(); i ++){
     lanes.get(i).drawLane();
