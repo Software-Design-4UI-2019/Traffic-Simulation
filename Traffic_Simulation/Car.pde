@@ -95,6 +95,7 @@ class Car {
     Lane currLane = this.lane;
   }
 
+//checks the surrounding of a car for lane changes
   void checkSurrounding() {
     PVector A = new PVector(this.position.x-40, this.position.y+40);
     PVector B = new PVector(this.position.x-40, this.position.y-40);
