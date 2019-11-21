@@ -20,7 +20,7 @@ Lane L2 = new Lane(new PVector(0, 350), new PVector(width, height/2-50), 2);
 Lane L3 = new Lane(new PVector(0, 400), new PVector(width, height/2), 3);
 
 void setup() {
-  size(1920, 1080);
+  size(1200, 900);
   frameRate(60);
   createGUI();
   
