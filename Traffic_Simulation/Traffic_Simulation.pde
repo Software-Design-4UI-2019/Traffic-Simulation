@@ -15,12 +15,12 @@ float spawnRate; // spawn rate global
 float timepassed; //time passed in program global
 
 //creates car lanes
-Lane L1 = new Lane(new PVector(0, 300), new PVector(width, 300), 1);
-Lane L2 = new Lane(new PVector(0, 350), new PVector(width, 350), 2);
-Lane L3 = new Lane(new PVector(0, 400), new PVector(width, 400), 3);
+Lane L1 = new Lane(new PVector(0, 300), new PVector(width, height/2-100), 1);
+Lane L2 = new Lane(new PVector(0, 350), new PVector(width, height/2-50), 2);
+Lane L3 = new Lane(new PVector(0, 400), new PVector(width, height/2), 3);
 
 void setup() {
-  size(1200, 1000);
+  size(1920, 1080);
   frameRate(60);
   createGUI();
   
