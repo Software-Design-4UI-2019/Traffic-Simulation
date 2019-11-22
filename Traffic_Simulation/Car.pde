@@ -23,17 +23,36 @@ class Car {
     speed = mag(this.vel.x, this.vel.y);
   }
 
+  
+  void superUpdate(){
+    //information variables:
+    
+    this.updateCompletion();
+    this.speed = this.vel.mag();
+    
+    //logic:
+    this.laneChangeCheck();
+    this.updateSpeed();
+    
+    //physics:
+    this.crashCheck();
+    this.position.x += this.vel.x * scaleM / frameRate;
+    this.position.y += this.vel.y * scaleM / frameRate;
+    
+    this.drawCar();
+  
+  }
   //checks for crashes
-  void crashCheck() {
+  void crashCheck() { //TO DO: CRASH PHYSICS
     for (Car c : allCars) {
-      if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
+      if (PVector.dist(c.position, this.position) / scaleM <1 && c != this) {
        println(PVector.dist(c.position, this.position));
         this.isCrashed = true;
       }
     }
   }
-
-//draws each car
+  
+  //draws each car
   void drawCar() {
     this.chooseColour();
     fill(carColour);
@@ -71,9 +90,6 @@ class Car {
         this.vel.setMag(max(this.speed*currDist/reacDist, this.speed - coeffF * 9.8, 0));
       }
     }
-    this.speed = this.vel.mag();
-    this.position.x += this.vel.x * scaleM / frameRate;
-    this.position.y += this.vel.y * scaleM / frameRate;
   }
 
 //changes the lane of a car
@@ -83,10 +99,12 @@ class Car {
   }
 
 //MUST FINISH
-//checks the surrounding of a car for lane changes
+
   void laneChangeCheck(){  //Check whether to change lanes, and also what direction and distance to go.
-   
+    //checkSurrounding();
   }
+  
+  //checks the surrounding of a car for lane changes
   void checkSurrounding() {
     PVector A = new PVector(this.position.x-40, this.position.y+40);
     PVector B = new PVector(this.position.x-40, this.position.y-40);
