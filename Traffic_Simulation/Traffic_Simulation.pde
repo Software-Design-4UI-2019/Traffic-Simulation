@@ -15,9 +15,9 @@ float spawnRate; // spawn rate global
 float timepassed; //time passed in program global
 
 //creates car lanes
-Lane L1 = new Lane(new PVector(0, 300), new PVector(width, height/2-100), 1);
-Lane L2 = new Lane(new PVector(0, 350), new PVector(width, height/2-50), 2);
-Lane L3 = new Lane(new PVector(0, 400), new PVector(width, height/2), 3);
+Lane L1 = new Lane(new PVector(0, 400), new PVector(width, 400), 1);
+Lane L2 = new Lane(new PVector(0, 450), new PVector(width, 450), 2);
+Lane L3 = new Lane(new PVector(0, 500), new PVector(width, 500), 3);
 
 void setup() {
   size(1200, 960);
@@ -57,7 +57,7 @@ void draw() {
   //creates background and grass
   background(89, 239, 89);
   fill(105);
-  rect(0, 300, width, 150);
+  rect(0, (height/2)-75, width, 150);
   
   //fetches values from sliders
   speedlim = speedLimitSlider.getValueI()/3.6;
@@ -68,8 +68,8 @@ void draw() {
   L1.drawLane();
   L2.drawLane();
   L3.drawLane();
-  drawDashes(-40, 400, 100);
-  drawDashes(-40, 345, 100);
+  drawDashes(-40, 450, 100);
+  drawDashes(-40, 500, 100);
 
   //continuously spawns cars
   if (timepassed%spawnRate == 0) {

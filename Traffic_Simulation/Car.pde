@@ -27,7 +27,7 @@ class Car {
   void crashCheck() {
     for (Car c : allCars) {
       if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
-        println(PVector.dist(c.position, this.position));
+       println(PVector.dist(c.position, this.position));
         this.isCrashed = true;
       }
     }
@@ -43,7 +43,7 @@ class Car {
 
 //chooses colour of car based on speed
   color chooseColour() {
-    println(this.speed, this.speed * 255 / (120-40));
+   // println(this.speed, this.speed * 255 / (120-40));
     this.carColour = color(int(this.speed * 255 / speedlim),255,255);
     return carColour;
   }
