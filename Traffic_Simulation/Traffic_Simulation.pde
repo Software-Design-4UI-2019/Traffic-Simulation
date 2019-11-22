@@ -78,15 +78,9 @@ void draw() {
 
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
-
-    stroke(1);
-    //assigns a colour to each car
-    fill(allCars.get(i).chooseColour());
-    allCars.get(i).drawCar();
-
     //pauses animation if user clicks "pause" button
     if (!paused) {
-      allCars.get(i).updateSpeed();
+      allCars.get(i).superUpdate();
       if (allCars.get(i).position.x > width+50) {
         allCars.remove(allCars.get(i));
       }
