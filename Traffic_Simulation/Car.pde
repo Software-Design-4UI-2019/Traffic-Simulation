@@ -75,10 +75,16 @@ class Car {
     this.position.y += this.vel.y * scaleM / frameRate;
   }
 
-  //changes the lane of a car
-  void changeLanes(String d) {
-    Lane currLane = this.lane;
-    //Lane newLane = ;
+//changes the lane of a car
+  void changeLanes(Lane L) {
+    //must be changed
+    this.lane = L;
+    this.lane.lanecars.add(this);
+    this.position.rotate(15);
+    if (this.position.y == this.lane.startpoint.y + 15){
+      this.position.rotate(-15);
+    }
+    
   }
 
   //MUST FINISH
