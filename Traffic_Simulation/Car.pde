@@ -39,6 +39,7 @@ class Car {
     this.position.x += this.vel.x * scaleM / frameRate;
     this.position.y += this.vel.y * scaleM / frameRate;
     
+    //draw:
     this.drawCar();
   
   }
