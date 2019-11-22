@@ -13,13 +13,13 @@ class Lane {
     lanes.add(this); //adds lane to a global array of lanes
   }
 
-//draws lane
+  //draws lane
   void drawLane() {
     line(startpoint.x, startpoint.y, endpoint.x, endpoint.y);
     line(startpoint.x, startpoint.y+laneWidth, endpoint.x, endpoint.y+laneWidth);
   }
 
-//counts the number of cars in lane
+  //counts the number of cars in lane
   int countCars() {
     int numcars = lanecars.size();
     return numcars;
