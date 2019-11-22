@@ -15,11 +15,11 @@ class Car {
     this.position = pos;
     this.reacTime = avgReacTime + randomGaussian() * 0.1;
 
-//adds car to allCars array and to an array of cars within each lane
+    //adds car to allCars array and to an array of cars within each lane
     allCars.add(this);
     this.lane.lanecars.add(this);
-    
-//creates a scalar value based on the car's velocity
+
+    //creates a scalar value based on the car's velocity
     speed = mag(this.vel.x, this.vel.y);
   }
 
@@ -27,27 +27,26 @@ class Car {
   void crashCheck() {
     for (Car c : allCars) {
       if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
-       println(PVector.dist(c.position, this.position));
+        println(PVector.dist(c.position, this.position));
         this.isCrashed = true;
       }
     }
   }
 
-//draws each car
+  //draws each car
   void drawCar() {
     this.chooseColour();
     fill(carColour);
     rect(position.x - carl * scaleM, position.y - carw * scaleM, carl * scaleM, carw * scaleM);
-    
   }
 
-//chooses colour of car based on speed
+  //chooses colour of car based on speed
   color chooseColour() {
-    this.carColour = color(int(this.speed * (255/100)),255,255);
+    this.carColour = color(int(this.speed * (255/100)), 255, 255);
     return carColour;
   }
 
-//updates speed of cars (thus driving the animation)
+  //updates speed of cars (thus driving the animation)
   void updateSpeed() {
     if (this.isCrashed) {
       this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
@@ -76,16 +75,15 @@ class Car {
     this.position.y += this.vel.y * scaleM / frameRate;
   }
 
-//changes the lane of a car
+  //changes the lane of a car
   void changeLanes(String d) {
     Lane currLane = this.lane;
     //Lane newLane = ;
   }
 
-//MUST FINISH
-//checks the surrounding of a car for lane changes
-  void laneChangeCheck(){  //Check whether to change lanes, and also what direction and distance to go.
-   
+  //MUST FINISH
+  //checks the surrounding of a car for lane changes
+  void laneChangeCheck() {  //Check whether to change lanes, and also what direction and distance to go.
   }
   void checkSurrounding() {
     PVector A = new PVector(this.position.x-40, this.position.y+40);

@@ -25,7 +25,7 @@ void setup() {
   createGUI();
   colorMode(HSB, 255);
   //draws lanes
-  for (int i = 0; i < lanes.size(); i ++){
+  for (int i = 0; i < lanes.size(); i ++) {
     lanes.get(i).drawLane();
   }
 }
@@ -46,7 +46,7 @@ void draw() {
   //calculates the time passed since the program began running
   timepassed = millis();
   noStroke();
-  
+
   //Sets text for pause button
   if (paused) {
     pauseButton.setText("Resume");
@@ -58,12 +58,12 @@ void draw() {
   background(89, 239, 89);
   fill(105);
   rect(0, (height/2)-75, width, 150);
-  
+
   //fetches values from sliders
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
   spawnRate = getSpawnRate()*3;
-  
+
   //draws lanes
   L1.drawLane();
   L2.drawLane();
@@ -75,7 +75,7 @@ void draw() {
   if (timepassed%spawnRate == 0) {
     spawnCar();
   }
-  
+
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
 
@@ -83,7 +83,7 @@ void draw() {
     //assigns a colour to each car
     fill(allCars.get(i).chooseColour());
     allCars.get(i).drawCar();
-    
+
     //pauses animation if user clicks "pause" button
     if (!paused) {
       allCars.get(i).updateSpeed();
