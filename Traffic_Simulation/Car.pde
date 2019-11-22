@@ -48,7 +48,6 @@ class Car {
     return carColour;
   }
 
-
 //updates speed of cars (thus driving the animation)
   void updateSpeed() {
     if (this.isCrashed) {
