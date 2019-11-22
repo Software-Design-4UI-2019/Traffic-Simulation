@@ -46,7 +46,6 @@ public void createGUI(){
   speedLimitSlider.setShowLimits(true);
   speedLimitSlider.setLimits(70, 20, 120);
   speedLimitSlider.setNbrTicks(11);
-  speedLimitSlider.setStickToTicks(true);
   speedLimitSlider.setNumberFormat(G4P.INTEGER, 0);
   speedLimitSlider.setOpaque(false);
   speedLimitSlider.addEventHandler(this, "speedLimitSliderChanged");
@@ -71,7 +70,6 @@ public void createGUI(){
   aggressionSlider.setShowLimits(true);
   aggressionSlider.setLimits(1.0, 0.5, 1.5);
   aggressionSlider.setNbrTicks(3);
-  aggressionSlider.setStickToTicks(true);
   aggressionSlider.setShowTicks(true);
   aggressionSlider.setNumberFormat(G4P.DECIMAL, 0);
   aggressionSlider.setLocalColorScheme(GCScheme.RED_SCHEME);
@@ -88,7 +86,6 @@ public void createGUI(){
   spawnRateSlider.setShowLimits(true);
   spawnRateSlider.setLimits(3, 1, 5);
   spawnRateSlider.setNbrTicks(5);
-  spawnRateSlider.setStickToTicks(true);
   spawnRateSlider.setShowTicks(true);
   spawnRateSlider.setNumberFormat(G4P.INTEGER, 0);
   spawnRateSlider.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
