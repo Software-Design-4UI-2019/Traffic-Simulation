@@ -79,7 +79,7 @@ class Car {
         nextCar = car;
       }
     }
-    if (nextCar == this) {
+    if (nextCar==this) {
       this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc));
     } else {
       float currDist = PVector.dist(this.position, nextCar.position)/scaleM;
@@ -101,6 +101,18 @@ class Car {
   //MUST FINISH
   //checks the surrounding of a car for lane changes
   void laneChangeCheck() {  //Check whether to change lanes, and also what direction and distance to go.
+    IntList carsAhead = new IntList();
+    for(Lane l: lanes){
+      int count = 0;
+      for (Car c: l.lanecars){
+        if (c != this && c.completion >= this.completion){
+          count += 1;
+        }
+      }
+      carsAhead.append(count);
+    }//FIX
+    //carsAhead.indexOf(max(carsAhead));
+    
     //checkSurrounding();
   }
   
