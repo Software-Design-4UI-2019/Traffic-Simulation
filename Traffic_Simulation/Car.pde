@@ -43,8 +43,7 @@ class Car {
 
 //chooses colour of car based on speed
   color chooseColour() {
-   // println(this.speed, this.speed * 255 / (120-40));
-    this.carColour = color(int(this.speed * 255 / (120-40)*3.6),255,255);
+    this.carColour = color(int(this.speed * (255/100)),255,255);
     return carColour;
   }
 
