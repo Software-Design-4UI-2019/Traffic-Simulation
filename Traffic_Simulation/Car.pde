@@ -81,8 +81,10 @@ class Car {
 //changes the lane of a car
   void changeLanes(String d) {
     Lane currLane = this.lane;
+    //Lane newLane = ;
   }
 
+//MUST FINISH
 //checks the surrounding of a car for lane changes
   void checkSurrounding() {
     PVector A = new PVector(this.position.x-40, this.position.y+40);
