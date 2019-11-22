@@ -79,7 +79,10 @@ void draw() {
   //does things for each car
   for (int i = 0; i < allCars.size(); i++) {
     //pauses animation if user clicks "pause" button
-    if (!paused) {
+    if (paused) {
+      allCars.get(i).drawCar();
+    }
+    else{
       allCars.get(i).superUpdate();
       if (allCars.get(i).position.x > width+50) {
         allCars.remove(allCars.get(i));
