@@ -44,7 +44,7 @@ class Car {
 //chooses colour of car based on speed
   color chooseColour() {
    // println(this.speed, this.speed * 255 / (120-40));
-    this.carColour = color(int(this.speed * 255 / speedlim),255,255);
+    this.carColour = color(int(this.speed * 255 / (120-40)*3.6),255,255);
     return carColour;
   }
 
@@ -73,7 +73,7 @@ class Car {
         this.vel.setMag(max(this.speed*currDist/reacDist, this.speed - coeffF * 9.8, 0));
       }
     }
-
+    this.speed = this.vel.mag();
     this.position.x += this.vel.x * scaleM / frameRate;
     this.position.y += this.vel.y * scaleM / frameRate;
   }
@@ -86,6 +86,9 @@ class Car {
 
 //MUST FINISH
 //checks the surrounding of a car for lane changes
+  void laneChangeCheck(){  //Check whether to change lanes, and also what direction and distance to go.
+   
+  }
   void checkSurrounding() {
     PVector A = new PVector(this.position.x-40, this.position.y+40);
     PVector B = new PVector(this.position.x-40, this.position.y-40);
