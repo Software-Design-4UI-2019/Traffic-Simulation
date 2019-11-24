@@ -58,6 +58,8 @@ void draw() {
   background(89, 239, 89);
   fill(105);
   rect(0, (height/2)-75, width, 150);
+  fill(89, 70, 89);
+  rect(0, 0, width, 100);
 
   //fetches values from sliders
   speedlim = speedLimitSlider.getValueI()/3.6;
