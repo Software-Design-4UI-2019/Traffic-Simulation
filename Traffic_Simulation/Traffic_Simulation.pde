@@ -14,6 +14,7 @@ int carw = 1; // width of a car
 float spawnRate; // spawn rate global
 float timepassed; //time passed in program global
 float couldChangeLanes = 20;
+int numLanes;
 
 //creates car lanes
 //Lane L1 = new Lane(new PVector(0, 400), new PVector(width, 400), 1);
@@ -62,11 +63,6 @@ void draw() {
   spawnRate = getSpawnRate()*3;
   maxAcc = speedChangeRateSlider.getValueI();
   couldChangeLanes = couldChangeLanesSlider.getValueI()*0.01;
-  
-
-  //draws lanes
-  //drawDashes(-40, 450, 100);
-  //drawDashes(-40, 500, 100);
 
   //continuously spawns cars
   if (timepassed%spawnRate == 0) {
@@ -98,7 +94,8 @@ void spawnLane(){
     PVector startv = new PVector(start,laneheight);
     PVector endv = new PVector(end, laneheight);
     lanes.add(new Lane(startv, endv, i+1));
-    //this won't properly draw lanes.get(i).drawLane();
+    //won't properly draw lane
+ //    lanes.get(i).drawLane();
     if (i != 0 & i != lanes.size()-1){
       drawDashes(-40,laneheight+50, 100);
     }
