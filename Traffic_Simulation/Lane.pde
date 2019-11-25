@@ -26,11 +26,4 @@ class Lane {
     int numcars = lanecars.size();
     return numcars;
   }
-
-  //calculates how far along the lane a car is
-  float getCompletionPercent(Car car) {
-    float d1 = PVector.dist(car.position, this.startpoint);
-    float d2 = PVector.dist(car.position, this.endpoint);
-    return (d1/(d1+d2));
-  }
 }

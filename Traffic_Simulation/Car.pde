@@ -95,35 +95,38 @@ class Car {
 //changes the lane of a car
   void changeLanes(Lane L) {
     //must be changed
+    this.lane.lanecars.remove(this);
     this.lane = L;
     this.lane.lanecars.add(this);
-    this.position.rotate(15);
+    this.position.rotate(PI/3);
     if (this.position.y == this.lane.startpoint.y + 15){
-      this.position.rotate(-15);
+      this.position.rotate(-PI/3);
     }
-    
   }
 
   //MUST FINISH
   //checks the surrounding of a car for lane changes
-  void laneChangeCheck() {  //Check whether to change lanes, and also what direction and distance to go.
-    IntList carsAhead = new IntList();
-    for(Lane l: lanes){
+  Lane laneChangeCheck() {  //Check whether to change lanes, and also what direction and distance to go.
+    int[] carsAhead = new int[lanes.size()];
+    Lane bestLane = null;
+    for(int i = 0; i<lanes.size(); i++){
+      Lane l = lanes.get(i);
       int count = 0;
       for (Car c: l.lanecars){
         if (c != this && c.completion >= this.completion){
           count += 1;
         }
       }
-      carsAhead.append(count);
-    }//FIX
-    //carsAhead.indexOf(max(carsAhead));
-    
-    //checkSurrounding();
+      carsAhead[i] = count;
+      if (count > max(carsAhead)){
+        bestLane = l;
+      }
+    }
+    return bestLane;
   }
   
   //checks the surrounding of a car for lane changes
-  void checkSurrounding() {
+  void checkSurrounding(Lane l) {
     PVector A = new PVector(this.position.x-40, this.position.y+40);
     PVector B = new PVector(this.position.x-40, this.position.y-40);
     PVector C = new PVector(this.position.x+40, this.position.y+40);
@@ -143,8 +146,8 @@ class Car {
   }
 
 
-  void updateCompletion() {
-    this.position.add(vel);
-    this.completion = this.lane.getCompletionPercent(this);
+   void updateCompletion() {
+    this.completion = this.position.x/width;
+    //fix this this.completion = this.lane.getCompletionPercent(this);
   }
 }
