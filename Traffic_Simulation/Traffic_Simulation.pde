@@ -25,7 +25,7 @@ void setup() {
   frameRate(60);
   createGUI();
   colorMode(HSB, 255);
-  spawnLane();
+
   }
 
 //draws dashes that separate lanes from each other
@@ -55,8 +55,7 @@ void draw() {
   //creates background and grass
   background(89, 239, 89);
   fill(89, 70, 89);
-  rect(0, 0, width, 100);
-
+  spawnLane();
   //fetches values from sliders
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
@@ -98,9 +97,11 @@ void spawnLane(){
   for (int i = 0; i < numLanes; i++){
     PVector startv = new PVector(start,laneheight);
     PVector endv = new PVector(end, laneheight);
-    lanes.add(new Lane(startv, endv, i));
-    lanes.get(i).drawLane();
-    drawDashes(-40,laneheight, 100);
+    lanes.add(new Lane(startv, endv, i+1));
+    //this won't properly draw lanes.get(i).drawLane();
+    if (i != 0 & i != lanes.size()-1){
+      drawDashes(-40,laneheight+50, 100);
+    }
     laneheight += 50;
   }
   println(laneheight);

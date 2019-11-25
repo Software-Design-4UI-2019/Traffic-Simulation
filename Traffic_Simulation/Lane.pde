@@ -16,7 +16,7 @@ class Lane {
   //draws lane
   void drawLane() {
     fill(105);
-    rect(startpoint.x, startpoint.y, 800, 50);
+    rect(0, startpoint.y, width, laneWidth);
     
   }
 
