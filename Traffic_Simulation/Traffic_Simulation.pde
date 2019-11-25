@@ -13,6 +13,7 @@ int carl = 2; // length of a car
 int carw = 1; // width of a car
 float spawnRate; // spawn rate global
 float timepassed; //time passed in program global
+float couldChangeLanes = 20;
 
 //creates car lanes
 Lane L1 = new Lane(new PVector(0, 400), new PVector(width, 400), 1);
@@ -58,11 +59,16 @@ void draw() {
   background(89, 239, 89);
   fill(105);
   rect(0, (height/2)-75, width, 150);
+  fill(89, 70, 89);
+  rect(0, 0, width, 100);
 
   //fetches values from sliders
   speedlim = speedLimitSlider.getValueI()/3.6;
   baseAggr = aggressionSlider.getValueI();
   spawnRate = getSpawnRate()*3;
+  maxAcc = speedChangeRateSlider.getValueI();
+  couldChangeLanes = couldChangeLanesSlider.getValueI()*0.01;
+  
 
   //draws lanes
   L1.drawLane();
