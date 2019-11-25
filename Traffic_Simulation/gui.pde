@@ -40,9 +40,9 @@ public void numLanesChanged(GTextField source, GEvent event) { //_CODE_:numberOf
 
 } //_CODE_:numberOfLanes:820175:
 
-public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:321941:
+public void couldChangeLanesSliderChanged(GSlider source, GEvent event) { //_CODE_:couldChangeLanesSlider:321941:
 
-} //_CODE_:slider1:321941:
+} //_CODE_:couldChangeLanesSlider:321941:
 
 
 
@@ -144,15 +144,15 @@ public void createGUI(){
   label3.setTextBold();
   label3.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   label3.setOpaque(true);
-  slider1 = new GSlider(this, 800, 30, 150, 60, 10.0);
-  slider1.setShowValue(true);
-  slider1.setShowLimits(true);
-  slider1.setLimits(20, 0, 100);
-  slider1.setShowTicks(true);
-  slider1.setNumberFormat(G4P.INTEGER, 0);
-  slider1.setLocalColorScheme(GCScheme.GREEN_SCHEME);
-  slider1.setOpaque(true);
-  slider1.addEventHandler(this, "slider1_change1");
+  couldChangeLanesSlider = new GSlider(this, 800, 30, 150, 60, 10.0);
+  couldChangeLanesSlider.setShowValue(true);
+  couldChangeLanesSlider.setShowLimits(true);
+  couldChangeLanesSlider.setLimits(20, 0, 100);
+  couldChangeLanesSlider.setShowTicks(true);
+  couldChangeLanesSlider.setNumberFormat(G4P.INTEGER, 0);
+  couldChangeLanesSlider.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  couldChangeLanesSlider.setOpaque(true);
+  couldChangeLanesSlider.addEventHandler(this, "couldChangeLanesSliderChanged");
 }
 
 // Variable declarations 
@@ -170,4 +170,4 @@ GLabel speedChangeRate;
 GTextField numberOfLanes; 
 GLabel lanesL; 
 GLabel label3; 
-GSlider slider1; 
+GSlider couldChangeLanesSlider; 
