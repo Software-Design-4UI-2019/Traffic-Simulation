@@ -16,20 +16,17 @@ float timepassed; //time passed in program global
 float couldChangeLanes = 20;
 
 //creates car lanes
-Lane L1 = new Lane(new PVector(0, 400), new PVector(width, 400), 1);
-Lane L2 = new Lane(new PVector(0, 450), new PVector(width, 450), 2);
-Lane L3 = new Lane(new PVector(0, 500), new PVector(width, 500), 3);
+//Lane L1 = new Lane(new PVector(0, 400), new PVector(width, 400), 1);
+//Lane L2 = new Lane(new PVector(0, 450), new PVector(width, 450), 2);
+//Lane L3 = new Lane(new PVector(0, 500), new PVector(width, 500), 3);
 
 void setup() {
   size(1200, 960);
   frameRate(60);
   createGUI();
   colorMode(HSB, 255);
-  //draws lanes
-  for (int i = 0; i < lanes.size(); i ++) {
-    lanes.get(i).drawLane();
+  spawnLane();
   }
-}
 
 //draws dashes that separate lanes from each other
 void drawDashes(float x, float y, float offset) {
@@ -57,8 +54,6 @@ void draw() {
 
   //creates background and grass
   background(89, 239, 89);
-  fill(105);
-  rect(0, (height/2)-75, width, 150);
   fill(89, 70, 89);
   rect(0, 0, width, 100);
 
@@ -71,11 +66,8 @@ void draw() {
   
 
   //draws lanes
-  L1.drawLane();
-  L2.drawLane();
-  L3.drawLane();
-  drawDashes(-40, 450, 100);
-  drawDashes(-40, 500, 100);
+  //drawDashes(-40, 450, 100);
+  //drawDashes(-40, 500, 100);
 
   //continuously spawns cars
   if (timepassed%spawnRate == 0) {
@@ -95,6 +87,23 @@ void draw() {
       }
     }
   }
+}
+
+void spawnLane(){
+  int numLanes = int(numberOfLanes.getText());
+  float start = 0;
+  float end = 800;
+  float startheight = ((height/2) - (numLanes*50/2));
+  float laneheight = startheight;
+  for (int i = 0; i < numLanes; i++){
+    PVector startv = new PVector(start,laneheight);
+    PVector endv = new PVector(end, laneheight);
+    lanes.add(new Lane(startv, endv, i));
+    lanes.get(i).drawLane();
+    drawDashes(-40,laneheight, 100);
+    laneheight += 50;
+  }
+  println(laneheight);
 }
 
 //spawns a car using randomly generated velocity and lane values and adds it to the allCars array

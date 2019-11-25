@@ -37,7 +37,8 @@ public void speedChangeRateSliderCHanged(GSlider source, GEvent event) { //_CODE
 } //_CODE_:speedChangeRateSlider:297397:
 
 public void numLanesChanged(GTextField source, GEvent event) { //_CODE_:numberOfLanes:820175:
-
+  int numLanes = int(numberOfLanes.getText());
+  spawnLane();
 } //_CODE_:numberOfLanes:820175:
 
 public void couldChangeLanesSliderChanged(GSlider source, GEvent event) { //_CODE_:couldChangeLanesSlider:321941:

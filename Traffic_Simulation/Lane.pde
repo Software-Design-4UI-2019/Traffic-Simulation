@@ -15,8 +15,9 @@ class Lane {
 
   //draws lane
   void drawLane() {
-    line(startpoint.x, startpoint.y, endpoint.x, endpoint.y);
-    line(startpoint.x, startpoint.y+laneWidth, endpoint.x, endpoint.y+laneWidth);
+    fill(105);
+    rect(startpoint.x, startpoint.y, 800, 50);
+    
   }
 
   //counts the number of cars in lane
