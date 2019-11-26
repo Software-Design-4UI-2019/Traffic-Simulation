@@ -167,7 +167,15 @@ class Car {
       println("up");
       d = -1;
     }
-    return (lanes.get(lanes.indexOf(this.lane)+d)); // return the target lane.
+    int index = lanes.indexOf(this.lane)+d;
+    Lane yes;
+    try{
+      yes = lanes.get(index);
+      
+    } catch (Exception e){
+      yes = this.lane;
+    }
+    return yes;
   }
 
   //checks the surrounding of a car for lane changes
