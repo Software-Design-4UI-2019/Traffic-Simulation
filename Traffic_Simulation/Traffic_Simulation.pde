@@ -87,13 +87,14 @@ void draw() {
 void spawnLane(){
   int numLanes = int(numberOfLanes.getText());
   if (numLanes != lanes.size()){
+    println(numLanes, lanes.size());
     lanes.clear();
     allCars.clear();
     float laneheight = ((height/2) - (numLanes*50/2));
     for (int i = 0; i < numLanes; i++){
       PVector startv = new PVector(0,laneheight);
       PVector endv = new PVector(width, laneheight);
-      lanes.add(new Lane(startv, endv, i+1));
+      Lane l1 = new Lane(startv, endv, i+1);
       //won't properly draw lane
       // lanes.get(i).drawLane();
       if (i != 0 & i != lanes.size()-1){

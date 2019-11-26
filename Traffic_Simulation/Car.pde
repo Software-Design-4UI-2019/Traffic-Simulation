@@ -54,6 +54,7 @@ class Car {
     if (this.position.x > width + 2*scaleM){
       allCars.remove(this);
       this.lane.lanecars.remove(this);
+      println(this.position,"deleted");
     }
   }
   
@@ -103,11 +104,9 @@ class Car {
     if (this.isCrashed) {
       this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
     }
-    Car nextCar = null;
+    Car nextCar = this;
     for (Car car : this.lane.lanecars) {
-      if (nextCar == null) {
-        nextCar = car;
-      } else if ((car.completion > this.completion && car.completion < nextCar.completion)) {
+      if ((car.completion > this.completion && car.completion < nextCar.completion)) {
         nextCar = car;
       }
     }
