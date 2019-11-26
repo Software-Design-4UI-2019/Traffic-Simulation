@@ -4,6 +4,7 @@ class Car {
   float speed;
   float completion; //how far along the lane the car is
   Lane lane; //what lane the car is in
+  Lane switchingLane;
   boolean isCrashed;
   float aggression;
   float reacTime;//reaction time
@@ -12,6 +13,7 @@ class Car {
     this.vel = v;
     this.aggression = a;
     this.lane = l;
+    this.switchingLane = l;
     this.position = pos;
     this.reacTime = avgReacTime + randomGaussian() * 0.1;
 
@@ -30,10 +32,12 @@ class Car {
     this.updateCompletion();
     this.speed = this.vel.mag();
     
-    
-    
     //logic:
-    this.laneChangeCheck();
+    //if (this.laneChangeCheck() != this.lane && this.switchingLane == this.lane){// if there is a better lane to switch to, and it is not currently switching lanes
+    //    checkSurrounding(this.laneChangeCheck());
+    //}
+    //this.doLaneChange();
+     
     this.updateSpeed();
     
     //physics:
@@ -52,12 +56,31 @@ class Car {
       this.lane.lanecars.remove(this);
     }
   }
+  
   //checks for crashes
   void crashCheck() { //TO DO: CRASH PHYSICS
     for (Car c : allCars) {
       if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
-        println(PVector.dist(c.position, this.position));
+        println("Crashed: " + PVector.dist(c.position, this.position));
         this.isCrashed = true;
+      }
+    }
+  }
+  
+  void doLaneChange(){
+    if (this.switchingLane != this.lane){ // if it has to switch lanes
+      if (this.vel.heading() == 0){ // if this has not turned yet
+        int d = 0; // direction of the lane.
+        if(this.switchingLane.startpoint.y - this.position.y > 25){ // the target lane is below the car
+          d = 1;
+        }
+        else if(this.switchingLane.startpoint.y - this.position.y < -25){ // the target lane is above the car
+          d = -1;
+        }
+        this.vel.rotate(PI/3 * d);
+      }
+      else{
+        
       }
     }
   }
@@ -101,23 +124,10 @@ class Car {
     }
   }
 
-//changes the lane of a car
-  void changeLanes(Lane L) {
-    //must be changed
-    this.lane.lanecars.remove(this);
-    this.lane = L;
-    this.lane.lanecars.add(this);
-    this.position.rotate(PI/3);
-    if (this.position.y == this.lane.startpoint.y + 15){
-      this.position.rotate(-PI/3);
-    }
-  }
-
-  //MUST FINISH
   //checks the surrounding of a car for lane changes
   Lane laneChangeCheck() {  //Check whether to change lanes, and also what direction and distance to go.
     int[] carsAhead = new int[lanes.size()];
-    Lane bestLane = null;
+    Lane bestLane = this.lane;
     for(int i = 0; i<lanes.size(); i++){
       Lane l = lanes.get(i);
       int count = 0;
@@ -133,28 +143,38 @@ class Car {
     }
     // To get to the best lane, you must first switch to the lane that is adjacent to you in the direction you want to go.
     int d = 0;// is the target lane up or down?
-    if(bestLane.startpoint.y >=)
+    
+    if(bestLane.startpoint.y - this.position.y > 25){ // the target lane is below the car
+      d = 1;
+    }
+    else if(bestLane.startpoint.y - this.position.y < -25){ // the target lane is above the car
+      d = -1;
+    }
+    return (lanes.get(lanes.indexOf(this.lane)+d)); // return the target lane.
   }
   
   //checks the surrounding of a car for lane changes
   void checkSurrounding(Lane l) {
-    int d;
-    if l
-    PVector A = new PVector(this.position.x-40, this.position.y+40);
-    PVector B = new PVector(this.position.x-40, this.position.y-40);
-    PVector C = new PVector(this.position.x+40, this.position.y+40);
-    PVector D = new PVector(this.position.x-40, this.position.y-40);
-    //check what lane we're in
-    //leftmost lane
-    if (this.lane == lanes.get(0)) {
-      if (dist(A.x, A.y, this.position.x, this.position.y) > 0) {
+    int d = 0; // direction of the lane.
+    if(l.startpoint.y - this.position.y > 25){ // the target lane is below the car
+      d = 1;
+    }
+    else if(l.startpoint.y - this.position.y < -25){ // the target lane is above the car
+      d = -1;
+    }
+    PVector A = new PVector(this.position.x-2*scaleM, this.position.y + 50 * d); //check a rectangular area to see if you can switch into that lane.
+    PVector B = new PVector(this.position.x+scaleM, this.position.y);
+    boolean commit = true;
+    for (Car c : l.lanecars){
+      if (A.x < c.position.x 
+          && c.position.x < B.x 
+          && min(A.y,B.y) < c.position.y 
+          && c.position.y < max(A.y, B.y)){ // if c lies inside the rectangle
+        commit = false; //don't turn
       }
     }
-    //middle lane
-    else if (this.lane == lanes.get(1)) {
-    }
-    //rightmost lane
-    else {
+    if(commit){
+      this.switchingLane = l;
     }
   }
 

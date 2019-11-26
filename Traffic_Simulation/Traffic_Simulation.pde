@@ -14,7 +14,7 @@ int carw = 1; // width of a car
 float spawnRate; // spawn rate global
 float timepassed; //time passed in program global
 float couldChangeLanes = 20;
-int numLanes;
+int numLanes = 3;
 
 //creates car lanes
 //Lane L1 = new Lane(new PVector(0, 400), new PVector(width, 400), 1);
@@ -86,26 +86,29 @@ void draw() {
 
 void spawnLane(){
   int numLanes = int(numberOfLanes.getText());
-  float start = 0;
-  float end = 800;
-  float startheight = ((height/2) - (numLanes*50/2));
-  float laneheight = startheight;
-  for (int i = 0; i < numLanes; i++){
-    PVector startv = new PVector(start,laneheight);
-    PVector endv = new PVector(end, laneheight);
-    lanes.add(new Lane(startv, endv, i+1));
-    //won't properly draw lane
- //    lanes.get(i).drawLane();
-    if (i != 0 & i != lanes.size()-1){
-      drawDashes(-40,laneheight+50, 100);
+  if (numLanes != lanes.size()){
+    lanes.clear();
+    allCars.clear();
+    float laneheight = ((height/2) - (numLanes*50/2));
+    for (int i = 0; i < numLanes; i++){
+      PVector startv = new PVector(0,laneheight);
+      PVector endv = new PVector(width, laneheight);
+      lanes.add(new Lane(startv, endv, i+1));
+      //won't properly draw lane
+      // lanes.get(i).drawLane();
+      if (i != 0 & i != lanes.size()-1){
+        drawDashes(-40,laneheight+50, 100);
+      }
+      laneheight += 50;
     }
-    laneheight += 50;
+  
   }
-  println(laneheight);
+  
 }
 
 //spawns a car using randomly generated velocity and lane values and adds it to the allCars array
 void spawnCar() {
+  
   float velx = random(speedlim*0.7, speedlim);
   float vely = 0;
   PVector vel = new PVector(velx, vely);
