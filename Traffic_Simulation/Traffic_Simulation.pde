@@ -118,7 +118,7 @@ void spawnCar() {
       allCars.add(new Car(vel, baseAggr, carlane, pos));
     }
   }
-  catch (Exception e) {
+  catch (IndexOutOfBoundsException e) {
     println("Invalid lane input.");
   }
 }
