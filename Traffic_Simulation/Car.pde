@@ -94,7 +94,7 @@ class Car {
   void drawCar() {
     this.chooseColour();
     fill(carColour);
-    rect(position.x - carl * scaleM, position.y - carw * scaleM, carl * scaleM, carw * scaleM);
+    rect(position.x - carl * scaleM, position.y - carw * scaleM, carl * scaleM, carw * scaleM);//draw the car
   }
 
   //chooses colour of car based on speed
@@ -106,7 +106,7 @@ class Car {
   //updates speed of cars (thus driving the animation)
   void updateSpeed() {
     if (this.isCrashed) {
-      this.vel.setMag(max( this.speed - coeffF * 9.8/frameRate, 0));
+      this.vel.setMag(max( this.speed - coeffF, 0));
     }
     else{
       
@@ -128,13 +128,13 @@ class Car {
         this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc/frameRate));
       } else {
         float currDist = PVector.dist(this.position, nextCar.position); // literal distance between this car and the next
-        float reacDist = pow(this.speed*scaleM, 2) / (2*coeffF*9.8); // distance required to stop
+        float reacDist = pow(this.speed*scaleM, 2) / (coeffF*20); // distance required to stop
         //println(currDist,reacDist,currDist/reacDist);
         
         if (currDist>reacDist) { 
-          this.vel.setMag(min(this.speed*currDist/(reacDist), speedlim * this.aggression, this.speed + maxAcc/frameRate));
+          this.vel.setMag(min(this.speed*currDist/(reacDist), speedlim * this.aggression, this.speed + maxAcc/frameRate)); // slow down or speed up the car according to the distance of the next car in the lane.
         } else {
-          this.vel.setMag(max(this.speed*currDist/(reacDist), this.speed - coeffF * 9.8/frameRate, 0));
+          this.vel.setMag(max(this.speed*currDist/(reacDist), this.speed - coeffF, 0));
         }
       }
     }
@@ -142,40 +142,43 @@ class Car {
 
   //checks the surrounding of a car for lane changes
   Lane laneChangeCheck() {  //Check whether to change lanes, and also what direction and distance to go.'
-    int[] carsAhead = new int[lanes.size()];
-    Lane bestLane = lanes.get(int(random(lanes.size())));
-    for (int i = 0; i<lanes.size(); i++) {
-      Lane l = lanes.get(i);
+    ArrayList<Integer> carsAhead = new ArrayList<Integer>();
+    Lane bestLane = lanes.get(int(random(lanes.size())));// find the lane with the least cars in front of this car
+    int min = -1;
+    for (Lane l :lanes){
       int count = 0;
-      for (Car c : l.lanecars) {
-        if (c != this && c.completion >= this.completion) {
+      for (Car c: l.lanecars){
+        if (c != this && c.completion > this.completion){
           count += 1;
         }
       }
-      carsAhead[i] = count;
-      if (count <= min(carsAhead)) {
-        bestLane = l;
+      if (min == -1){
+        min = count;
       }
+      else if (min < count){
+        min = count;
+      }
+      carsAhead.add(count);
     }
-    println(lanes.indexOf(bestLane),lanes.indexOf(this.lane));
+    bestLane = lanes.get(carsAhead.indexOf(min));
+    
+    //println(lanes.indexOf(bestLane),lanes.indexOf(this.lane));
     // To get to the best lane, you must first switch to the lane that is adjacent to you in the direction you want to go.
     int d = 0;// is the target lane up or down?
     if (bestLane.startpoint.y > this.lane.startpoint.y) { // the target lane is below the car
-      println("down");
+      //println("down");
       d = 1;
     } else if (bestLane.startpoint.y < this.lane.startpoint.y) { // the target lane is above the car
-      println("up");
+      //println("up");
       d = -1;
     }
-    int index = lanes.indexOf(this.lane)+d;
-    Lane yes;
-    try{
-      yes = lanes.get(index);
-      
-    } catch (Exception e){
-      yes = this.lane;
+    int index = lanes.indexOf(this.lane)+d; 
+    if (random(1) < couldChangeLanes/10){//have a chance to change lanes
+      return lanes.get(index);
     }
-    return yes;
+    else{
+      return this.lane;
+    }
   }
 
   //checks the surrounding of a car for lane changes
@@ -199,6 +202,9 @@ class Car {
     }
     if (commit) {
       this.switchingLane = l;
+    }
+    else{
+      this.switchingLane = this.lane;
     }
   }
 

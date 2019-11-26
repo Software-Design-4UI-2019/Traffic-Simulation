@@ -169,5 +169,5 @@ float getSpawnRate() {
     x = 5;
     break;
   }
-  return x;
+  return x/2;
 }
