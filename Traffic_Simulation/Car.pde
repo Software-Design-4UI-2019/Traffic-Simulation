@@ -26,9 +26,11 @@ class Car {
   
   void superUpdate(){
     //information variables:
-    
+    this.checkDeletion();
     this.updateCompletion();
     this.speed = this.vel.mag();
+    
+    
     
     //logic:
     this.laneChangeCheck();
@@ -42,6 +44,13 @@ class Car {
     //draw:
     this.drawCar();
   
+  }
+  
+  void checkDeletion(){
+    if (this.position.x > width + 2*scaleM){
+      allCars.remove(this);
+      this.lane.lanecars.remove(this);
+    }
   }
   //checks for crashes
   void crashCheck() { //TO DO: CRASH PHYSICS
@@ -122,11 +131,15 @@ class Car {
         bestLane = l;
       }
     }
-    return bestLane;
+    // To get to the best lane, you must first switch to the lane that is adjacent to you in the direction you want to go.
+    int d = 0;// is the target lane up or down?
+    if(bestLane.startpoint.y >=)
   }
   
   //checks the surrounding of a car for lane changes
   void checkSurrounding(Lane l) {
+    int d;
+    if l
     PVector A = new PVector(this.position.x-40, this.position.y+40);
     PVector B = new PVector(this.position.x-40, this.position.y-40);
     PVector C = new PVector(this.position.x+40, this.position.y+40);
