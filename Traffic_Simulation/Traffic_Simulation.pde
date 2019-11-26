@@ -100,12 +100,17 @@ void spawnCar() {
   float velx = random(speedlim*0.3, speedlim * 0.5);
   float vely = 0;
   PVector vel = new PVector(velx, vely);
-  Lane carlane = chooseLane();
-  if  (carlane != null){ // if there is enough space in the lane
-    float posx = -2*scaleM;     
-    float posy = carlane.startpoint.y + scaleM/2;
-    PVector pos =  new PVector(posx, posy);
-    allCars.add(new Car(vel, baseAggr, carlane, pos));
+  try {
+    Lane carlane = chooseLane();
+    if  (carlane != null) { // if there is enough space in the lane
+      float posx = -2*scaleM;     
+      float posy = carlane.startpoint.y+35;
+      PVector pos =  new PVector(posx, posy);
+      allCars.add(new Car(vel, baseAggr, carlane, pos));
+    }
+  }
+  catch (IndexOutOfBoundsException e) {
+    println("Invalid lane input.");
   }
 }
 
