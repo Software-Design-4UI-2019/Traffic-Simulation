@@ -26,8 +26,7 @@ void setup() {
   frameRate(60);
   createGUI();
   colorMode(HSB, 255);
-
-  }
+}
 
 //draws dashes that separate lanes from each other
 void drawDashes(float x, float y, float offset) {
@@ -74,8 +73,7 @@ void draw() {
     //pauses animation if user clicks "pause" button
     if (paused) {
       allCars.get(i).drawCar();
-    }
-    else{
+    } else {
       allCars.get(i).superUpdate();
       if (allCars.get(i).position.x > width+50) {
         allCars.remove(allCars.get(i));
@@ -84,41 +82,44 @@ void draw() {
   }
 }
 
-void spawnLane(){
+void spawnLane() {
   int numLanes = int(numberOfLanes.getText());
-  if (numLanes != lanes.size()){
+  if (numLanes != lanes.size()) {
     println(numLanes, lanes.size());
     lanes.clear();
     allCars.clear();
     float laneheight = ((height/2) - (numLanes*50/2));
-    for (int i = 0; i < numLanes; i++){
-      PVector startv = new PVector(0,laneheight);
+    for (int i = 0; i < numLanes; i++) {
+      PVector startv = new PVector(0, laneheight);
       PVector endv = new PVector(width, laneheight);
       Lane l1 = new Lane(startv, endv, i+1);
       //won't properly draw lane
       // lanes.get(i).drawLane();
-      if (i != 0 & i != lanes.size()-1){
-        drawDashes(-40,laneheight+50, 100);
+      if (i != 0 & i != lanes.size()-1) {
+        drawDashes(-40, laneheight+50, 100);
       }
       laneheight += 50;
     }
-  
   }
-  
 }
 
 //spawns a car using randomly generated velocity and lane values and adds it to the allCars array
 void spawnCar() {
-  
+
   float velx = random(speedlim*0.7, speedlim);
   float vely = 0;
   PVector vel = new PVector(velx, vely);
-  Lane carlane = chooseLane();
-  if  (carlane != null){ // if there is enough space in the lane
-    float posx = -2*scaleM;     
-    float posy = carlane.startpoint.y+35;
-    PVector pos =  new PVector(posx, posy);
-    allCars.add(new Car(vel, baseAggr, carlane, pos));
+  try {
+    Lane carlane = chooseLane();
+    if  (carlane != null) { // if there is enough space in the lane
+      float posx = -2*scaleM;     
+      float posy = carlane.startpoint.y+35;
+      PVector pos =  new PVector(posx, posy);
+      allCars.add(new Car(vel, baseAggr, carlane, pos));
+    }
+  }
+  catch (Exception e) {
+    println("Invalid lane input.");
   }
 }
 
@@ -131,19 +132,20 @@ void clearCars() {
 Lane chooseLane() {
   //sees which lane has the least amount of cars within it
   int min = lanes.get(0).countCars();
+
   Lane chosenLane = lanes.get(0);
   for (Lane l : lanes) {
     if (l.countCars() <= min) {
       min = l.countCars();
-      
+
       chosenLane = l;
     }
   }
-  if (random(1) < 0.5){//50% for the car to just spawn in a random lane.
+  if (random(1) < 0.5) {//50% for the car to just spawn in a random lane.
     chosenLane = lanes.get(int(random(lanes.size()-0.01)));
   }
-  for (Car c : chosenLane.lanecars){
-    if (c.position.x <= 0){
+  for (Car c : chosenLane.lanecars) {
+    if (c.position.x <= 0) {
       chosenLane = null;
     }
   }

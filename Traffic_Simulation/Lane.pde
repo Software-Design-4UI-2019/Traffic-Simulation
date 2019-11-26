@@ -18,7 +18,6 @@ class Lane {
     fill(105);
     rect(0, startpoint.y+65, width, laneWidth+25);
     println(startpoint.y);
-    
   }
 
   //counts the number of cars in lane
