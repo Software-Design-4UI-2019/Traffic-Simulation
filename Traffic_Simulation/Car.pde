@@ -7,7 +7,6 @@ class Car {
   Lane switchingLane;
   boolean isCrashed;
   float aggression;
-  float reacTime;//reaction time
   color carColour;
   Car(PVector v, float a, Lane l, PVector pos) {
     this.vel = v;
@@ -15,7 +14,6 @@ class Car {
     this.lane = l;
     this.switchingLane = l;
     this.position = pos;
-    this.reacTime = avgReacTime + randomGaussian() * 0.1;
 
     //adds car to allCars array and to an array of cars within each lane
     allCars.add(this);
@@ -28,15 +26,14 @@ class Car {
   
   void superUpdate(){
     //information variables:
-    this.checkDeletion();
     this.updateCompletion();
     this.speed = this.vel.mag();
     
     //logic:
-    //if (this.laneChangeCheck() != this.lane && this.switchingLane == this.lane){// if there is a better lane to switch to, and it is not currently switching lanes
-    //    checkSurrounding(this.laneChangeCheck());
-    //}
-    //this.doLaneChange();
+    if (this.laneChangeCheck() != this.lane && this.switchingLane == this.lane){// if there is a better lane to switch to, and it is not currently switching lanes
+        checkSurrounding(this.laneChangeCheck());
+    }
+    this.doLaneChange();
      
     this.updateSpeed();
     
@@ -47,14 +44,15 @@ class Car {
     
     //draw:
     this.drawCar();
-  
+    
+    this.checkDeletion();
   }
   
   void checkDeletion(){
     if (this.position.x > width + 2*scaleM){
       allCars.remove(this);
       this.lane.lanecars.remove(this);
-      println(this.position,"deleted");
+      //println(this.position,"deleted");
     }
   }
   
@@ -62,7 +60,7 @@ class Car {
   void crashCheck() { //TO DO: CRASH PHYSICS
     for (Car c : allCars) {
       if (PVector.dist(c.position, this.position) / scaleM < 2 && c != this) {
-        println("Crashed: " + PVector.dist(c.position, this.position));
+        //println("Crashed: " + PVector.dist(c.position, this.position));
         this.isCrashed = true;
       }
     }
@@ -71,6 +69,7 @@ class Car {
   void doLaneChange(){
     if (this.switchingLane != this.lane){ // if it has to switch lanes
       if (this.vel.heading() == 0){ // if this has not turned yet
+         this.switchingLane.lanecars.add(this); // while a car is switching lanes, it is in both lanes.
         int d = 0; // direction of the lane.
         if(this.switchingLane.startpoint.y - this.position.y > 25){ // the target lane is below the car
           d = 1;
@@ -80,8 +79,12 @@ class Car {
         }
         this.vel.rotate(PI/3 * d);
       }
-      else{
-        
+      else if((this.switchingLane.startpoint.y - this.position.y) * this.vel.y <= 0 ){ // if the difference of the y positions and the y velocity have different signs
+        //This means that the car has passed the y position of the target lane
+        this.position.y = this.switchingLane.startpoint.y; //align y value
+        this.vel.rotate(-this.vel.heading()); //rotate back to 0
+        this.lane.lanecars.remove(this); // lane array stuff
+        this.lane = this.switchingLane;
       }
     }
   }
@@ -102,26 +105,35 @@ class Car {
   //updates speed of cars (thus driving the animation)
   void updateSpeed() {
     if (this.isCrashed) {
-      println(this.vel,"crashed");
       this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
-      println(this.vel,"crashed2");
     }
     else{
-      Car nextCar = this;
-      for (Car car : this.lane.lanecars) {
-        if ((car.completion > this.completion && car.completion < nextCar.completion)) {
-          nextCar = car;
+      
+      ArrayList<Car> carsAhead = new ArrayList<Car>();
+      for (Car car: this.lane.lanecars){
+        if (car.completion > this.completion){
+          carsAhead.add(car);
         }
       }
-      if (nextCar==this) {
-        this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc));
+      float minCompletion = 2;
+      Car nextCar = null;
+      for (Car car : carsAhead) {
+        if ((car.completion < minCompletion)) {
+          nextCar = car;
+          minCompletion = nextCar.completion;
+        }
+      }
+      if (nextCar==null) {
+        this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc/frameRate));
       } else {
-        float currDist = PVector.dist(this.position, nextCar.position)/scaleM - 2*scaleM;
-        float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) -2*scaleM;
-        if (currDist/reacDist > 1) {
-          this.vel.setMag(min(this.speed*currDist/reacDist, speedlim * this.aggression, this.speed + maxAcc));
+        float currDist = PVector.dist(this.position, nextCar.position); // literal distance between this car and the next
+        float reacDist = pow(this.speed*scaleM, 2) / (2*coeffF*9.8); // distance required to stop
+        //println(currDist,reacDist,currDist/reacDist);
+        
+        if (currDist>reacDist) { 
+          this.vel.setMag(min(this.speed*currDist/(reacDist), speedlim * this.aggression, this.speed + maxAcc/frameRate));
         } else {
-          this.vel.setMag(max(this.speed*currDist/reacDist, this.speed - coeffF * 9.8, 0));
+          this.vel.setMag(max(this.speed*currDist/(reacDist), this.speed - coeffF * 9.8, 0));
         }
       }
     } 
@@ -184,6 +196,5 @@ class Car {
 
    void updateCompletion() {
     this.completion = this.position.x/width;
-    //fix this this.completion = this.lane.getCompletionPercent(this);
   }
 }
