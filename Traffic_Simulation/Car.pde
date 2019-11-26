@@ -102,25 +102,29 @@ class Car {
   //updates speed of cars (thus driving the animation)
   void updateSpeed() {
     if (this.isCrashed) {
+      println(this.vel,"crashed");
       this.vel.setMag(max( this.speed - coeffF * 9.8, 0));
+      println(this.vel,"crashed2");
     }
-    Car nextCar = this;
-    for (Car car : this.lane.lanecars) {
-      if ((car.completion > this.completion && car.completion < nextCar.completion)) {
-        nextCar = car;
+    else{
+      Car nextCar = this;
+      for (Car car : this.lane.lanecars) {
+        if ((car.completion > this.completion && car.completion < nextCar.completion)) {
+          nextCar = car;
+        }
       }
-    }
-    if (nextCar==this) {
-      this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc));
-    } else {
-      float currDist = PVector.dist(this.position, nextCar.position)/scaleM;
-      float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
-      if (currDist/reacDist > 1) {
-        this.vel.setMag(min(this.speed*currDist/reacDist, speedlim * this.aggression, this.speed + maxAcc));
+      if (nextCar==this) {
+        this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc));
       } else {
-        this.vel.setMag(max(this.speed*currDist/reacDist, this.speed - coeffF * 9.8, 0));
+        float currDist = PVector.dist(this.position, nextCar.position)/scaleM;
+        float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
+        if (currDist/reacDist > 1) {
+          this.vel.setMag(min(this.speed*currDist/reacDist, speedlim * this.aggression, this.speed + maxAcc));
+        } else {
+          this.vel.setMag(max(this.speed*currDist/reacDist, this.speed - coeffF * 9.8, 0));
+        }
       }
-    }
+    } 
   }
 
   //checks the surrounding of a car for lane changes
