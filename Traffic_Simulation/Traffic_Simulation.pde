@@ -114,10 +114,12 @@ void spawnCar() {
   float vely = 0;
   PVector vel = new PVector(velx, vely);
   Lane carlane = chooseLane();
-  float posx = -50;     
-  float posy = carlane.startpoint.y+35;
-  PVector pos =  new PVector(posx, posy);
-  allCars.add(new Car(vel, baseAggr, carlane, pos));
+  if  (carlane != null){ // if there is enough space in the lane
+    float posx = -2*scaleM;     
+    float posy = carlane.startpoint.y+35;
+    PVector pos =  new PVector(posx, posy);
+    allCars.add(new Car(vel, baseAggr, carlane, pos));
+  }
 }
 
 //clears all cars on screen
@@ -133,7 +135,16 @@ Lane chooseLane() {
   for (Lane l : lanes) {
     if (l.countCars() <= min) {
       min = l.countCars();
+      
       chosenLane = l;
+    }
+  }
+  if (random(1) < 0.5){//50% for the car to just spawn in a random lane.
+    chosenLane = lanes.get(int(random(lanes.size()-0.01)));
+  }
+  for (Car c : chosenLane.lanecars){
+    if (c.position.x <= 0){
+      chosenLane = null;
     }
   }
   return chosenLane;

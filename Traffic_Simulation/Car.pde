@@ -116,8 +116,8 @@ class Car {
       if (nextCar==this) {
         this.vel.setMag(min(speedlim * this.aggression, this.speed + maxAcc));
       } else {
-        float currDist = PVector.dist(this.position, nextCar.position)/scaleM;
-        float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) ;
+        float currDist = PVector.dist(this.position, nextCar.position)/scaleM - 2*scaleM;
+        float reacDist = this.reacTime * this.speed/scaleM + pow(this.speed/scaleM, 2) / (2*coeffF*9.8) -2*scaleM;
         if (currDist/reacDist > 1) {
           this.vel.setMag(min(this.speed*currDist/reacDist, speedlim * this.aggression, this.speed + maxAcc));
         } else {
